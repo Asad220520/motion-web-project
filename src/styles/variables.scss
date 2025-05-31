@@ -1,0 +1,57 @@
+:root {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  --color-red-45: #E50000;
+  --color-red-50: #FF0000;
+  --color-red-55: #FF1919;
+  --color-red-60: #FF3333;
+  --color-red-80: #FF9999;
+  --color-red-90: #FFCCCC;
+  --color-red-95: #FFE5E5;
+  --color-red-99: #FFFAFA;
+
+  --color-black-06: #0F0F0F;
+  --color-black-08: #141414;
+  --color-black-10: #1A1A1A;
+  --color-black-12: #1F1F1F;
+  --color-black-15: #262626;
+  --color-black-20: #333333;
+  --color-black-25: #404040;
+  --color-black-30: #4C4C4C;
+
+  --color-gray-60: #999999;
+  --color-gray-65: #A6A6A6;
+  --color-gray-70: #B3B3B3;
+  --color-gray-75: #BFBFBF;
+  --color-gray-90: #E4E4E7;
+  --color-gray-95: #F1F1F3;
+  --color-gray-97: #F7F7F8;
+  --color-gray-99: #FCFCFD;
+
+  --border: var(--border-width-s) solid var(--color-black-15);
+
+  --border-width-l: 4px;
+  --border-width-m: 3px;
+  --border-width-s: 1px;
+
+  --border-radius-l: 12px;
+  --border-radius-m: 10px;
+  --border-radius-s: 8px;
+  --border-radius-xs: 6px;
+  --border-radius-xxs: 5px;
+  --border-radius-xxxs: 4px;
+
+  --font-family-base: 'Manrope', sans-serif;
+
+  --container-width: #{fluid-to-laptop(
+    $container-desktop-width,
+    $container-laptop-width
+  )};
+  --container-padding-x: 16px;
+
+  --section-padding-y: #{fluid(75, 40)};
+
+  --transition-duration: 0.2s;
+  --transition-duration-longer: 0.4s;
+}
