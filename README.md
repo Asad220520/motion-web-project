@@ -14,3 +14,4 @@ pnpm add react react-dom react-router-dom classnames normalize.css
 # Dev-зависимости
 pnpm add -D vite @vitejs/plugin-react @types/react @types/react-dom# viteBaseShablon
 # shablon-full
+# shablon-full
