@@ -6,15 +6,14 @@ import AboutUs from "./pages/AboutUs/AboutUs";
 import Courses from "./pages/Courses/Courses";
 import Contacts from "./pages/Contacts/Contacts";
 
-const App = (props) => {
-  const { children, title, url } = props;
+const App = () => {
   return (
     <div className="App">
-      <Header url={url} />
+      <Header />
       <div className="main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Онас" element={<AboutUs />} />
+          <Route path="/онас" element={<AboutUs />} />
           <Route path="/курсы" element={<Courses />} />
           <Route path="/контакты" element={<Contacts />} />
         </Routes>
