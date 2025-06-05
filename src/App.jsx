@@ -4,10 +4,11 @@ import About from "@/pages/About/About";
 import Header from "@/layouts/Header/Header";
 import Footer from "@/layouts/Footer/Footer";
 
-const App = () => {
+const App = (props) => {
+  const { children, title, url } = props;
   return (
     <div className="App">
-      <Header />
+      <Header url={url} />
       <div className="main">
         <Routes>
           <Route path="/" element={<Home />} />
