@@ -9,10 +9,10 @@ const Header = ({ url }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "Movies & Shows", href: "/movies" },
-    { label: "Support", href: "/support" },
-    { label: "Subscriptions", href: "/subscriptions" },
+    { label: "Главная", href: "/" },
+    { label: "О нас", href: "/Онас" },
+    { label: "Курсы", href: "/курсы" },
+    { label: "Контакты", href: "/контакты" },
   ];
 
   useEffect(() => {
@@ -67,17 +67,19 @@ const Header = ({ url }) => {
           <div className="header__actions">
             <Button
               className="header__button"
-              label="Search"
-              isLabelHidden
+              label="Войти"
               mode="transparent"
-              iconName="search"
+              isBlueLabel
+              // isLabelHidden
+              // iconName="search"
             />
             <Button
               className="header__button"
-              label="Notifications"
-              isLabelHidden
-              mode="transparent"
-              iconName="notification"
+              label="Присоединяйся"
+              // mode="transparent"
+              // isLabelHidden
+              iconName="ArrowRight"
+              // iconPosition="before"
             />
           </div>
         </dialog>
