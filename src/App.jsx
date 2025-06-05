@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home/Home";
-import About from "@/pages/About/About";
 import Header from "@/layouts/Header/Header";
 import Footer from "@/layouts/Footer/Footer";
+import AboutUs from "./pages/AboutUs/AboutUs";
+import Courses from "./pages/Courses/Courses";
+import Contacts from "./pages/Contacts/Contacts";
 
 const App = (props) => {
   const { children, title, url } = props;
@@ -12,7 +14,9 @@ const App = (props) => {
       <div className="main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/Онас" element={<AboutUs />} />
+          <Route path="/курсы" element={<Courses />} />
+          <Route path="/контакты" element={<Contacts />} />
         </Routes>
       </div>
       <Footer />

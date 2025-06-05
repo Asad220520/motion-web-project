@@ -7,8 +7,8 @@ html {
 body {
   @include fluid-text(18, 14);
   font-family: var(--font-family-base);
-  color: var(--color-gray-60);
-  background-color: var(--color-black-08);
+  color: var(--color-base);
+  background-color: var(--color-white);
 }
 
 .App {

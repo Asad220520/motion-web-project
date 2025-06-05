@@ -11,8 +11,9 @@ const Button = ({
   label,
   isLabelHidden = false,
   iconName,
-  iconPosition = "before",
+  iconPosition = "after",
   hasFillIcon,
+  isBlueLabel = false, // Новый пропс для синего текста
 }) => {
   const isLink = href !== undefined;
   const Component = isLink ? "a" : "button";
@@ -33,7 +34,15 @@ const Button = ({
       {...specificProps}
     >
       {iconPosition === "before" && iconComponent}
-      {!isLabelHidden && <span className="button__label">{label}</span>}
+      {!isLabelHidden && (
+        <span
+          className={classNames("button__label", {
+            "button__label--blue": isBlueLabel,
+          })}
+        >
+          {label}
+        </span>
+      )}
       {iconPosition === "after" && iconComponent}
     </Component>
   );

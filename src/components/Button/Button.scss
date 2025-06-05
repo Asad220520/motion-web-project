@@ -5,7 +5,7 @@
   padding: fluid-to-laptop(18, 14) fluid-to-laptop(24, 20);
   font-weight: 600;
   color: var(--color-white);
-  background-color: var(--color-red-45);
+  background-color: var(--color-blue);
   border: none;
   border-radius: var(--border-radius-s);
   user-select: none;
@@ -16,8 +16,8 @@
   }
 
   @include hover {
+    background-color: var(--color-blue);
     color: var(--color-white);
-    background-color: var(--color-red-60);
   }
 
   &:active {
@@ -42,6 +42,17 @@
 
       .button__icon {
         --iconSize: #{fluid-to-laptop(34, 24)};
+      }
+    }
+  }
+
+  &__label {
+    // color: inherit; // Наследует цвет от кнопки
+
+    &--blue {
+      color: var(--color-blue); // Синий цвет для текста
+      @include hover {
+        color: var(--color-white);
       }
     }
   }
