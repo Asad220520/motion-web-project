@@ -1,6 +1,5 @@
 .button {
   @include flex-center(true);
-
   column-gap: 4px;
   padding: fluid-to-laptop(18, 14) fluid-to-laptop(24, 20);
   font-weight: 600;
@@ -17,6 +16,10 @@
 
   @include hover {
     background-color: var(--color-blue);
+    color: var(--color-white);
+  }
+
+  &:hover .button__label--blue {
     color: var(--color-white);
   }
 
@@ -45,15 +48,8 @@
       }
     }
   }
+}
 
-  &__label {
-    // color: inherit; // Наследует цвет от кнопки
-
-    &--blue {
-      color: var(--color-blue); // Синий цвет для текста
-      @include hover {
-        color: var(--color-white);
-      }
-    }
-  }
+.button__label--blue {
+  color: var(--color-blue);
 }

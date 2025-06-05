@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   padding-block: fluid(22, 14);
-  // border-bottom: var(--border-width-s) solid transparent;
+  border-bottom: var(--border-width) solid transparent;
   animation-name: scrolling-header;
   animation-fill-mode: both;
   animation-timeline: scroll();
@@ -14,7 +14,7 @@
     to {
       padding-block: 10px;
       background-color: var(--color-white);
-      border-color: var(--color-black-15);
+      border-color: var(--color-black);
     }
   }
 
@@ -38,7 +38,7 @@
     width: 100%;
     height: 100%;
     padding: var(--container-padding-x);
-    background-color: var(--color-black-20);
+    background-color: var(--color-white-15);
     border: none;
     transition-duration: var(--transition-duration);
     transition-behavior: allow-discrete;
@@ -66,7 +66,7 @@
   }
 
   &__menu {
-    // border-radius: var(--border-radius-l);
+    border-radius: var(--border-radius-l);
 
     @include laptop {
       border-radius: var(--border-radius-m);
@@ -74,7 +74,7 @@
 
     @include tablet-above {
       padding: fluid-to-laptop(10, 8);
-      // background-color: var(--color-black-06);
+      // background-color: var(--color-black);
       // outline: var(--border-width-l) solid var(--color-black-12);
     }
 
@@ -84,6 +84,7 @@
       height: 100%;
       border-radius: 0;
       overflow-y: auto;
+
     }
 
     &-list {
@@ -105,17 +106,21 @@
 
       @include tablet {
         font-size: 20px;
+        color: var(--color-black);
       }
 
       @include hover {
-        // color: var(--color-white);
-        background-color: var(--color-red-60);
+        color: var(--color-white);
+        background-color: var(--color-blue);
+        border-radius: var(--border-radius-m);
+
       }
 
       &.is-active {
         font-weight: 500;
         color: var(--color-white);
-        background-color: var(--color-black-10);
+        background-color: var(--color-blue);
+        border-radius: var(--border-radius-m);
         pointer-events: none;
       }
     }
@@ -130,4 +135,5 @@
   &__burger-button {
     position: relative;
   }
+
 }

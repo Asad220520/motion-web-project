@@ -13,16 +13,16 @@ const Button = ({
   iconName,
   iconPosition = "after",
   hasFillIcon,
-  isBlueLabel = false, // Новый пропс для синего текста
+  isBlueLabel, // ✅ добавлено для управления синим цветом текста
 }) => {
   const isLink = href !== undefined;
   const Component = isLink ? "a" : "button";
   const specificProps = isLink ? { href, target } : { type };
   const title = isLabelHidden ? label : undefined;
-
-  const iconComponent = iconName && (
-    <Icon className="button__icon" name={iconName} hasFill={hasFillIcon} />
-  );
+  const iconComponent =
+    iconName && (
+      <Icon className="button__icon" name={iconName} hasFill={hasFillIcon} />
+    );
 
   return (
     <Component

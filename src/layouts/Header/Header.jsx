@@ -1,45 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 import classNames from "classnames";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
 import BurgerButton from "@/components/BurgerButton";
 
-const Header = ({ url }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { label: "Главная", href: "/" },
-    { label: "О нас", href: "/Онас" },
+    { label: "О нас", href: "/онас" },
     { label: "Курсы", href: "/курсы" },
     { label: "Контакты", href: "/контакты" },
   ];
 
   useEffect(() => {
-    // Блокируем скролл страницы при открытом меню
     if (isMenuOpen) {
       document.documentElement.classList.add("is-lock");
     } else {
       document.documentElement.classList.remove("is-lock");
     }
-    // Чистка при размонтировании компонента
     return () => {
       document.documentElement.classList.remove("is-lock");
     };
   }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="header" data-js-overlay-menu="">
       <div className="header__inner container">
         <Logo className="header__logo" />
+
         <dialog
           className={classNames("header__overlay-menu-dialog", {
             "is-active": isMenuOpen,
@@ -51,45 +46,41 @@ const Header = ({ url }) => {
             <ul className="header__menu-list">
               {menuItems.map(({ label, href }, index) => (
                 <li className="header__menu-item" key={index}>
-                  <a
-                    className={classNames("header__menu-link", {
-                      "is-active": href === url,
-                    })}
-                    href={href}
-                    onClick={closeMenu} // закрываем меню при клике на ссылку
+                  <NavLink
+                    to={href}
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                      classNames("header__menu-link", { "is-active": isActive })
+                    }
                   >
                     {label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
+
           <div className="header__actions">
             <Button
               className="header__button"
               label="Войти"
               mode="transparent"
               isBlueLabel
-              // isLabelHidden
-              // iconName="search"
             />
             <Button
-              className="header__button"
+              className="header__button blue"
               label="Присоединяйся"
-              // mode="transparent"
-              // isLabelHidden
+              mode="blue"
               iconName="ArrowRight"
-              // iconPosition="before"
             />
           </div>
         </dialog>
+
         <BurgerButton
           className={classNames("header__burger-button", "visible-tablet", {
             "is-active": isMenuOpen,
           })}
-          extraAttrs={{
-            "data-js-overlay-menu-burger-button": "",
-          }}
+          extraAttrs={{ "data-js-overlay-menu-burger-button": "" }}
           onClick={toggleMenu}
         />
       </div>
