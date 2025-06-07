@@ -1,0 +1,26 @@
+.reviewsCard {
+  max-width: 500px;
+  border: var(--border);
+  border-radius: var(--border-radius-m);
+  padding: fluid(30, 20);
+
+  &__inner {
+    &-cart {
+      @include flex-center;
+      padding-bottom: 20px;
+
+      &-mod {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        h5 {
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &-text {}
+}

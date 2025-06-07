@@ -1,0 +1,17 @@
+.reviews {
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    &-card {
+      display: flex;
+      gap: 30px fluid(30, 10);
+      padding-block: fluid(60, 50);
+
+
+    }
+  }
+}
