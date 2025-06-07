@@ -1,12 +1,13 @@
 import React from 'react'
+import MainSection from './MainSection/MainSection'
+import PopularSection from './PopularSection/PopularSection'
 
 const Courses = () => {
   return (
-    <div className="courses">
-      <div className="container">
-        <div className="courses__inner">courses</div>
-      </div>
-    </div>
+    < >
+     <MainSection/> 
+     <PopularSection/>
+    </>
   )
 }
 
