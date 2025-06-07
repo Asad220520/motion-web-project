@@ -1,0 +1,69 @@
+#productCard {
+  @include flex-center;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: 0.3s;
+  @include hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(66, 65, 65, 0.1);
+  }
+  img { 
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-bottom: 16px;
+  }
+  .productCard {
+    width:fluid(300, 152);
+    h3 {
+      @include fluid-text(22, 11);
+      margin-bottom: 8px;
+    }
+    p {
+      @include fluid-text(16, 8);
+      color: var(--color-black);
+      margin-bottom: 12px;
+    }
+    &--info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__text {
+        @include flex-center;
+        align-items: flex-start;
+        gap:fluid(5, 2);
+        img {
+          width: fluid(18, 10);
+        }
+        span {
+          font-size: fluid(12, 7);
+          color: var(--color-black);
+        }
+      }
+    }
+    button {
+      @include flex-center;
+      padding: fluid-to-laptop(16, 8) fluid-to-laptop(24, 10);
+      font-size: fluid(18, 11);
+      font-weight: 600;
+      color: var(--color-blue);
+      background-color: var(--color-white);
+      border: none;
+      border-radius: 36px;
+      border: var(--border-width-s) solid var(--color-blue);
+      user-select: none;
+      cursor: pointer;
+      margin-bottom: fluid(40, 20);
+
+      @include hover {
+        background-color: var(--color-blue);
+        color: var(--color-white);
+      }
+      &:active {
+        scale: 1.05;
+      }
+    }
+  }
+}

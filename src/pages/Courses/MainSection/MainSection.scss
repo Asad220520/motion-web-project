@@ -1,0 +1,39 @@
+.mainSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: fluid(71, 20);
+  padding: fluid(60, 20) 0;
+
+  @include tablet {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  &--content {
+    max-width: 600px;
+    h1 {
+      @include fluid-text(50, 24);
+      color: var(--color-text);
+    }
+  }
+
+  &--img {
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+
+      @include laptop {
+        max-width: 400px;
+      }
+
+      @include tablet {
+        max-width: 300px;
+      }
+    }
+  }
+}
