@@ -1,17 +1,93 @@
 .reviews {
+  padding: fluid(30, 60) 0;
+
   &__inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    max-width: fluid(300, 1200);
+    margin: 0 auto;
     text-align: center;
+    padding: 0 fluid(15, 30);
+  }
 
-    &-card {
+  &__title {
+    @include fluid-text(24, 32);
+    font-weight: 700;
+    margin-bottom: fluid(8, 16);
+    line-height: 1.3;
+  }
+
+  &__description {
+    @include fluid-text(14, 16);
+    color: #666;
+    margin-bottom: fluid(20, 40);
+    line-height: 1.6;
+  }
+
+  &__slider {
+    width: 100%;
+    padding: fluid(10, 20) 0 fluid(20, 40);
+    overflow: hidden;
+
+    .swiper-wrapper {
       display: flex;
-      gap: 30px fluid(30, 10);
-      padding-block: fluid(60, 50);
+      align-items: stretch;
+    }
 
+    .swiper-slide {
+      height: auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
 
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: fluid(20, 30);
+  }
+
+  &__dots {
+    display: flex;
+    gap: fluid(4, 8);
+    justify-content: center;
+
+    .swiper-pagination-bullet {
+      width: fluid(8, 10);
+      height: fluid(8, 10);
+      background: #e0e0e0;
+      opacity: 1;
+      margin: 0 !important;
+      transition: all 0.3s ease;
+
+      &-active {
+        background: #1890ff;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__arrows {
+    display: flex;
+    gap: fluid(8, 12);
+  }
+
+  &__arrow {
+    width: fluid(32, 40);
+    height: fluid(32, 40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    @include mobile {
+      .button__icon {
+        width: fluid(12, 16);
+        height: fluid(12, 16);
+      }
     }
   }
 }

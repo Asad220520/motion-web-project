@@ -1,8 +1,9 @@
 import "./Button.scss";
 import classNames from "classnames";
 import Icon from "@/components/Icon";
+import React, { forwardRef } from "react";
 
-const Button = ({
+const Button = forwardRef(({
   className,
   type = "button",
   href,
@@ -13,8 +14,8 @@ const Button = ({
   iconName,
   iconPosition = "after",
   hasFillIcon,
-  isBlueLabel, // ✅ добавлено для управления синим цветом текста
-}) => {
+  isBlueLabel,
+}, ref) => {
   const isLink = href !== undefined;
   const Component = isLink ? "a" : "button";
   const specificProps = isLink ? { href, target } : { type };
@@ -26,8 +27,10 @@ const Button = ({
 
   return (
     <Component
+      ref={ref}
       className={classNames(className, "button", {
         [`button--${mode}`]: mode,
+        "button--circle": mode === "circle",
       })}
       title={title}
       aria-label={title}
@@ -46,6 +49,6 @@ const Button = ({
       {iconPosition === "after" && iconComponent}
     </Component>
   );
-};
+});
 
 export default Button;

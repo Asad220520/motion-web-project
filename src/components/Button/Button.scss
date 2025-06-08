@@ -48,6 +48,17 @@
       }
     }
   }
+
+  &--circle {
+    width: fluid(60, 40);
+    height: fluid(60, 40);
+    padding: 0;
+    border-radius: 50%;
+
+    .button__icon {
+      margin: 0;
+    }
+  }
 }
 
 .button__label--blue {

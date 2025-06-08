@@ -1,24 +1,24 @@
 import "./ReviewsCard.scss";
 import rivo from "@/assets/images/revios.svg";
+import { BiSolidStar } from "react-icons/bi";
 
-const ReviewsCard = () => {
+const ReviewsCard = ({ name, location, rating, content }) => {
   return (
     <div className="reviewsCard">
-      <div className="reviewsCard__inner-cart">
-        <div className="reviewsCard__inner-cart-mod">
-          <img src={rivo} alt="User" />
-          <div>
-            <h5>Yessica Christy</h5>
-            <span>Shanxi, China</span>
+      <div className="reviewsCard__header">
+        <div className="reviewsCard__user">
+          <img src={rivo} alt="User" className="reviewsCard__avatar" />
+          <div className="reviewsCard__user-info">
+            <h5 className="reviewsCard__name">{name}</h5>
+            <span className="reviewsCard__location">{location}</span>
+          </div>
+          <div className="reviewsCard__rating">
+            {rating} <BiSolidStar color="orange" />
           </div>
         </div>
-        <span>4.5</span>
       </div>
-      <div className="reviewsCard__inner-text">
-        <p>
-          «Мне это нравится, потому что я люблю путешествовать далеко и все еще
-          могу подключаться к высокой скорости».
-        </p>
+      <div className="reviewsCard__content">
+        <p className="reviewsCard__text">«{content}»</p>
       </div>
     </div>
   );
