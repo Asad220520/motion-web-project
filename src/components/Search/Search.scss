@@ -1,51 +1,57 @@
 #search {
-  padding: 50px 0;
+  padding: 90px 0;
   .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     h1 {
       font-weight: 700;
-      @include fluid-text(50, 16);
-      line-height: 70px;
+      // @include fluid-text(50, 16);
+      font-size: clamp(12px, 4vw, 26px);
+      line-height: 27px;
       letter-spacing: 0%;
       color: #0b132a;
     }
     h2 {
       font-weight: 500;
-      @include fluid-text(23, 8);
-      // font-size: 16px;
-      line-height: 30px;
+      font-size: clamp(8px, 2vw, 24px);
+      line-height: 27px;
+      // @include fluid-text(23, 8);
+      // line-height: 29px;
       letter-spacing: 0%;
-      text-align: center;
       color: #4f5665;
-      
     }
 
     &--input {
       display: flex;
       align-items: center;
-      max-width: fluid(1043, 120);
-      height: 88px;
+      justify-content: space-between;
+      // max-width: fluid(1043, 200);
+      width: clamp(300px, 80vw, 1043px);
+      // height: fluid(88, 22);
+      height: clamp(20px, 7vw, 88px);
       border: 2px solid #949494;
-      border-radius: 10px;
+      border-radius: 4px;
       input {
         border: none;
         width: 85%;
         height: 100%;
         outline: none;
-        padding-left: 15px;
+        padding-left: 5px;
         font-weight: 400;
-        @include fluid-text(22, 8);
+        @include fluid-text(22, 6);
         line-height: 42.48px;
         letter-spacing: 0.3px;
         border-radius: 10px;
         color: #737373;
       }
       button {
-        max-width: fluid(180, 60);
+        max-width: fluid(170, 60);
         height: 100%;
-        border-radius: 0 10px 10px 0;
-
+        border-radius: 0 4px 4px 0;
         font-weight: 400;
-        @include fluid-text(24, 8);
+        @include fluid-text(24, 6);
         text-align: center;
         color: white;
         background: #23a6f0;
