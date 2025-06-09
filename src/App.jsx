@@ -1,5 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home/Home";
+<<<<<<< HEAD
+import Header from "@/layouts/Header/Header";
+import Footer from "@/layouts/Footer/Footer";
+import AboutUs from "./pages/AboutUs/AboutUs";
+import Courses from "./pages/Courses/Courses";
+import Contacts from "./pages/Contacts/Contacts";
+import Detail from "./pages/Detail/Detail";
+import { useMatch } from "react-router-dom";
+import { useEffect } from "react";
+import { useState } from "react";
+=======
 import AboutUs from "@/pages/AboutUs/AboutUs";
 import Courses from "@/pages/Courses/Courses";
 import Contacts from "@/pages/Contacts/Contacts";
@@ -23,17 +34,46 @@ import CoursesProfile from "./pages/Profiles/CoursesProfile/CoursesProfile";
 // import Grades from "@/pages/Profiles/Grades";
 // import Settings from "@/pages/Profiles/Settings";
 // import Help from "@/pages/Profiles/Help";
+>>>>>>> main
 
 const App = () => {
+  const match = useMatch("/detail/:detaId");
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTablet(window.innerWidth <= 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const shouldShowHeader = !match || isTablet;
+
+  console.log(isTablet);
+
   return (
     <div className="App">
+<<<<<<< HEAD
+      {shouldShowHeader && <Header />}
+      <div className="main">
+        <Routes>
+=======
       <Routes>
         {/* Публичные маршруты */}
         <Route element={<MainLayout />}>
+>>>>>>> main
           <Route path="/" element={<Home />} />
           <Route path="/онас" element={<AboutUs />} />
           <Route path="/курсы" element={<Courses />} />
           <Route path="/контакты" element={<Contacts />} />
+<<<<<<< HEAD
+          <Route path="/detail/:detailId" element={<Detail />} />
+        </Routes>
+      </div>
+      <Footer />
+=======
         </Route>
 
         {/* Авторизация и вход */}
@@ -53,6 +93,7 @@ const App = () => {
           <Route path="помощь" element={<Help />} />
         </Route>
       </Routes>
+>>>>>>> main
     </div>
   );
 };

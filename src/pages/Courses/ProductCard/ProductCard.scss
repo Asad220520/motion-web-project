@@ -10,14 +10,14 @@
     transform: translateY(-4px);
     box-shadow: 0 6px 10px rgba(66, 65, 65, 0.1);
   }
-  img { 
+  img {
     width: 100%;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     margin-bottom: 16px;
   }
   .productCard {
-    width:fluid(300, 152);
+    width: fluid(300, 152);
     h3 {
       @include fluid-text(22, 11);
       margin-bottom: 8px;
@@ -34,7 +34,7 @@
       &__text {
         @include flex-center;
         align-items: flex-start;
-        gap:fluid(5, 2);
+        gap: fluid(5, 2);
         img {
           width: fluid(18, 10);
         }
@@ -44,7 +44,7 @@
         }
       }
     }
-    button {
+    a {
       @include flex-center;
       padding: fluid-to-laptop(16, 8) fluid-to-laptop(24, 10);
       font-size: fluid(18, 11);
@@ -57,7 +57,7 @@
       user-select: none;
       cursor: pointer;
       margin-bottom: fluid(40, 20);
-
+      text-decoration: none;
       @include hover {
         background-color: var(--color-blue);
         color: var(--color-white);
