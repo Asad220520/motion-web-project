@@ -1,0 +1,90 @@
+.popularSection {
+  padding: fluid(60, 15) 0;
+  &--title {
+    text-align: center;
+    h1 {
+      @include fluid-text(50, 24);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    p {
+      @include fluid-text(18, 14);
+      color: var(--color-light-gray);
+      max-width: 640px;
+      margin: 0 auto 40px;
+    }
+  }
+  &--categories {
+    @include flex-center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: fluid(12, 8);
+    margin-bottom: fluid(60, 30);
+    a {
+      padding: fluid-to-laptop(16, 12) fluid-to-laptop(24, 20);
+      border: var(--border-width-s) solid var(--color-grey);
+      border-radius: var(--border-radius-s);
+      color: var(--color-base);
+      font-size: fluid(18, 14);
+      margin-bottom: 16px;
+      @include hover {
+        color: var(--color-white);
+        background-color: var(--color-blue);
+        border-radius: var(--border-radius-m);
+      }
+
+      &.is-active {
+        font-weight: 500;
+        color: var(--color-white);
+        background-color: var(--color-blue);
+        border-radius: var(--border-radius-m);
+        pointer-events: none;
+      }
+    }
+    @include mobile {
+      & {
+        justify-content: space-between;
+      }
+    }
+  }
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: fluid(60, 24);
+    @include tablet {
+      & {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      }
+    }
+    @include mobile {
+      & {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+    @include mobile-s {
+      & {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+    }
+  }
+  &--btn {
+    @include flex-center;
+    padding: 0;
+    font-weight: 400;
+    font-size: fluid(18, 12);
+    text-transform: capitalize;
+    text-decoration: underline;
+    color: var(--color-grey);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: fluid(80, 30) auto;
+    @include hover {
+      color: var(--color-blue);
+    }
+    &:active {
+      scale: 1.05;
+    }
+  }
+}

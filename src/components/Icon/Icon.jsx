@@ -1,12 +1,13 @@
 import classNames from "classnames";
 import "./Icon.scss";
 
-import { FiSearch, FiBell, FiArrowRight } from "react-icons/fi";
+import { FiSearch, FiBell, FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 const iconMap = {
   search: FiSearch,
   notification: FiBell,
   ArrowRight: FiArrowRight,
+  ArrowLeft: FiArrowLeft,
 };
 
 const Icon = ({ className, name, hasFill = false }) => {
