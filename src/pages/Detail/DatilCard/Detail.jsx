@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import img from "../../assets/images/detail.png";
+import { Link, NavLink, useParams } from "react-router-dom";
+import img from "@/assets/images/detail.png";
 import Button from "@/components/Button";
-import "./detail.scss";
-import Videos from "./VideosSection/Videos";
-
+import Videos from "../VideosSection/Videos";
+import "./Detail.scss";
 const Detail = () => {
   const { detailId } = useParams();
   const [slice, setSlice] = useState(3);
@@ -145,10 +144,15 @@ const Detail = () => {
               </div>
             </div>
             {slice !== 3 && <p>{description}</p>}
-            <button className="detail--btn" onClick={() => setSlice(isExpanded ? 3 : features.length)}>
+            <button
+              className="detail--btn"
+              onClick={() => setSlice(isExpanded ? 3 : features.length)}
+            >
               {isExpanded ? "Скрыть" : "Показать все"}
             </button>
-            <Button label="Купить курс" mode="blue" />
+            <NavLink to={"/оплата"}>
+              <Button label="Купить курс" mode="blue" />
+            </NavLink>
           </div>
         </div>
       </div>
