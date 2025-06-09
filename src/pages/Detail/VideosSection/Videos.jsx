@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./videos.scss";
+import "./Videos.scss";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import img from "../../../assets/images/videos.png";
 import classNames from "classnames";
@@ -126,9 +126,10 @@ const CourseLessons = () => {
                         </div>
                       </div>
                       <div className="lessons--section__videos--card__name">
-
-                      <span>{idx + 1}.{section.title}</span>
-                      <h3 className="lesson-name">{lesson.title}</h3>
+                        <span>
+                          {idx + 1}.{section.title}
+                        </span>
+                        <h3 className="lesson-name">{lesson.title}</h3>
                       </div>
                     </div>
                   ))}
