@@ -1,0 +1,11 @@
+.profile-layout {
+  display: flex;
+  height: 100vh;
+
+  .profile-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    background-color: #f9f9f9;
+  }
+}

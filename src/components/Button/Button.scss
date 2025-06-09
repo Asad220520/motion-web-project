@@ -16,7 +16,7 @@
 
   @include hover {
     background-color: var(--color-blue);
-    color: var(--color-white);
+    // color: var(--color-white);
   }
 
   &:hover .button__label--blue {
@@ -58,6 +58,10 @@
     .button__icon {
       margin: 0;
     }
+  }
+
+  &--black-10 {
+    color: var(--color-black);
   }
 }
 

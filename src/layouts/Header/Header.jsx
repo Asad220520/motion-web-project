@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.scss";
 import classNames from "classnames";
 import Logo from "@/components/Logo";
@@ -61,18 +61,22 @@ const Header = () => {
           </nav>
 
           <div className="header__actions">
-            <Button
-              className="header__button"
-              label="Войти"
-              mode="transparent"
-              isBlueLabel
-            />
-            <Button
-              className="header__button blue"
-              label="Присоединяйся"
-              mode="blue"
-              iconName="ArrowRight"
-            />
+            <NavLink to={"/войти"}>
+              <Button
+                className="header__button"
+                label="Войти"
+                mode="transparent"
+                isBlueLabel
+              />
+            </NavLink>
+            <NavLink to={"/регистрация"}>
+              <Button
+                className="header__button blue"
+                label="Присоединяйся"
+                mode="blue"
+                iconName="ArrowRight"
+              />
+            </NavLink>
           </div>
         </dialog>
 
