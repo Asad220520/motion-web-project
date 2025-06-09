@@ -1,11 +1,17 @@
 import React from "react";
+import "./AboutUs.scss";
+import Rac from "./Rac/Rac";
+import Text from "./Text/Text";
+import Imag from "./Imag/Imag";
+import Search from "@/components/Search/Search";
 
 const AboutUs = () => {
   return (
-    <div className="aboutUs">
-      <div className="container">
-        <div className="aboutUs__inner">aboutUs</div>
-      </div>
+    <div className="AboutUs">
+      <Rac />
+      <Imag />
+      <Text />
+      <Search/>
     </div>
   );
 };

@@ -2,7 +2,9 @@ import React from "react";
 import Button from "@/components/Button";
 import "./ProductCard.scss";
 import { FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const ProductCard = ({ el }) => {
+  
   return (
     <div id="productCard" key={el.id}>
       <img src={el.img} alt={el.title} />
@@ -17,9 +19,9 @@ const ProductCard = ({ el }) => {
             </div>
           ))}
         </div>
-        <button>
+      <Link to={`/detail/${el.id}`}>
           Узнать больше <FaChevronRight />
-        </button>
+      </Link>
       </div>
     </div>
   );
