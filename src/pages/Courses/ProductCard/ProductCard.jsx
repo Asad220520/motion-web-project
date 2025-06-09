@@ -10,8 +10,8 @@ const ProductCard = ({ el }) => {
         <h3>{el.title}</h3>
         <p>{el.desc}</p>
         <div className="productCard--info">
-          {el.info.map((el) => (
-            <div className="productCard--info__text">
+          {el.info.map((el,id) => (
+            <div key={id} className="productCard--info__text">
               <img src={el.img} alt="img" />
               <span>{el.text}</span>
             </div>
