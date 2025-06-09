@@ -4,12 +4,8 @@ import Search from "@/components/Search/Search";
 const Home = () => {
   return (
     <div className="home">
-      <div className="container">
-        <div className="home__inner">
-          <Reviews />
-          <Search />
-        </div>
-      </div>
+      <Reviews />
+      <Search />
     </div>
   );
 };
