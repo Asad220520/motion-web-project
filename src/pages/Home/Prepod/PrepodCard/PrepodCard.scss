@@ -1,0 +1,43 @@
+.prepodCard {
+  &__inner {
+    width: 330px;
+    height: 300px;
+    border-radius: 12px;
+    padding: 35px 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+  }
+
+  &__icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+
+  h5 {
+    font-size: 16px;
+    font-weight: 600;
+
+  }
+
+
+
+
+  &__divider {
+    width: 50px;
+    height: 2px;
+    background: var(--color-red);
+    margin: 20px 0;
+  }
+
+  &__description {
+    margin: 20px 0;
+  }
+}

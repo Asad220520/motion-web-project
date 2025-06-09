@@ -1,0 +1,23 @@
+.lotStudy {
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+
+  &__text {
+    width: fluid(682, 330);
+  }
+
+  &__image {
+
+    width: fluid(480, 250);
+  }
+
+}

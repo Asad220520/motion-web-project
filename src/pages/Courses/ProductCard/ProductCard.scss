@@ -1,4 +1,5 @@
 #productCard {
+  width: fluid(328, 165);
   @include flex-center;
   flex-direction: column;
   background: #fff;
