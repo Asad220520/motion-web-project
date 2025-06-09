@@ -1,0 +1,49 @@
+#text {
+  padding: 90px 0;
+
+  .text {
+    // width: clamp(200px, 80vw, 1146px);
+    max-width: 100%;
+    margin: 0 auto;
+
+    h1 {
+      text-align: center;
+    }
+
+    &--nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    img {
+      width: clamp(120px, 29vw, 459px);
+      height: clamp(150px, 31vw, 489px);
+      object-fit: contain;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: clamp(14px, 2vw, 22px);
+      line-height: 1.5;
+      color: #000000;
+      margin: 0;
+
+      &.additional-text {
+        margin-top: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      p {
+        font-size: clamp(12px, 3vw, 16px);
+      }
+    }
+  }
+}

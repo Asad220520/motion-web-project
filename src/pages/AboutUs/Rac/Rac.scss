@@ -1,0 +1,57 @@
+#rac {
+  padding: 50px 0;
+
+  .rac {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 40px;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 20px;
+    }
+
+    h1 {
+      font-family: 'Rubik' sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 4vw, 48px);
+      line-height: 63px;
+      letter-spacing: 0.1px;
+      color: #252b42;
+      z-index: 1;
+      width: fluid(780, 355);
+
+      @include mobile {
+        text-align: center;
+        /* Центрируем текст на мобильных */
+      }
+    }
+
+    &--nav {
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      width: 387px;
+      height: 387px;
+      border-radius: 50%;
+      background: #96c9e5;
+
+      @include mobile {
+        width: 250px;
+        height: 250px;
+      }
+
+      img {
+        width: 450px;
+        top: 50px;
+
+        @include mobile {
+          width: 300px;
+        }
+      }
+    }
+  }
+}
