@@ -1,75 +1,67 @@
 import { Routes, Route } from "react-router-dom";
+
 import Home from "@/pages/Home/Home";
-import Detail from "./pages/Detail/DatilCard/Detail";
-import { useMatch } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
 import AboutUs from "@/pages/AboutUs/AboutUs";
 import Courses from "@/pages/Courses/Courses";
 import Contacts from "@/pages/Contacts/Contacts";
+import Detail from "./pages/Detail/DatilCard/Detail";
 import Register from "@/auth/Register/Register";
 import Login from "@/auth/Login/Login";
 import Payment from "@/payment/PaymentForm/PaymentForm";
 
-import MainLayout from "@/layouts/MainLayouts";
-import AuthLayout from "@/layouts/AuthLayout";
-import ProfileLayout from "@/layouts/ProfileLauout/ProfileLayout";
+import ProfileMain from "@/pages/Profiles/ProfileMain/ProfileMain";
+import Chat from "@/pages/Profiles/Chat/Chat";
+import Grades from "@/pages/Profiles/Grades/Grades";
+import Help from "@/pages/Profiles/Help/Help";
+import CoursesProfile from "@/pages/Profiles/CoursesProfile/CoursesProfile";
+import Settings from "@/pages/Profiles/Settings/Settings";
+import MainLayout from "./layouts/MainLayouts";
+import AuthLayout from "./layouts/AuthLayout";
+import ProfileLayout from "./layouts/ProfileLauout/ProfileLayout";
 
-// Вложенные страницы профиля
-import ProfileMain from "./pages/Profiles/ProfileMain/ProfileMain";
-import Chat from "./pages/Profiles/Chat/Chat";
-import Grades from "./pages/Profiles/Grades/Grades";
-import Help from "./pages/Profiles/Help/Help";
-import { Settings } from "lucide-react";
-import CoursesProfile from "./pages/Profiles/CoursesProfile/CoursesProfile";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserProfile } from "./redux/features/profile/profileSlice";
 
 const App = () => {
-  const match = useMatch("/detail/:detaId");
-  const [isTablet, setIsTablet] = useState(false);
+  const dispatch = useDispatch();
+  const tokens = useSelector((state) => state.auth.tokens);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsTablet(window.innerWidth <= 1024);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    if (tokens?.access) {
+      dispatch(fetchUserProfile());
+    }
+  }, [tokens, dispatch]);
 
-  const shouldShowHeader = !match || isTablet;
-
-  console.log(isTablet);
-
+  // ...
   return (
-    <div className="App">
-      <Routes>
-        {/* Публичные маршруты */}
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/онас" element={<AboutUs />} />
-          <Route path="/курсы" element={<Courses />} />
-          <Route path="/контакты" element={<Contacts />} />
-          <Route path="/detail/:detailId" element={<Detail />} />
-        </Route>
+    <Routes>
+      {/* Публичная часть */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/онас" element={<AboutUs />} />
+        <Route path="/курсы" element={<Courses />} />
+        <Route path="/контакты" element={<Contacts />} />
+        <Route path="/detail/:detailId" element={<Detail />} />
+      </Route>
 
-        {/* Авторизация и вход */}
-        <Route element={<AuthLayout />}>
-          <Route path="/регистрация" element={<Register />} />
-          <Route path="/войти" element={<Login />} />
-          <Route path="/оплата" element={<Payment />} />
-        </Route>
+      {/* Авторизация */}
+      <Route element={<AuthLayout />}>
+        <Route path="/регистрация" element={<Register />} />
+        <Route path="/войти" element={<Login />} />
+        <Route path="/оплата" element={<Payment />} />
+      </Route>
 
-        {/* Защищённые маршруты профиля с сайдбаром */}
-        <Route path="/профиль" element={<ProfileLayout />}>
-          <Route index element={<ProfileMain />} />
-          <Route path="чат" element={<Chat />} />
-          <Route path="курсы" element={<CoursesProfile />} />
-          <Route path="оценки" element={<Grades />} />
-          <Route path="настройки" element={<Settings />} />
-          <Route path="помощь" element={<Help />} />
-        </Route>
-      </Routes>
-    </div>
+      {/* Профиль */}
+      <Route element={<ProfileLayout />}>
+        <Route path="/профиль" element={<ProfileMain />} />
+        <Route path="/профиль/чат" element={<Chat />} />
+        <Route path="/профиль/курсы" element={<CoursesProfile />} />
+        <Route path="/профиль/оценки" element={<Grades />} />
+        <Route path="/профиль/настройки" element={<Settings />} />
+        <Route path="/профиль/помощь" element={<Help />} />
+      </Route>
+    </Routes>
   );
 };
 
