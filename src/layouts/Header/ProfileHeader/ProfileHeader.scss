@@ -1,0 +1,57 @@
+.profile-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 16px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid transparent;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__left {
+    /* Логотип слева */
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007bff;
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+      }
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+      white-space: nowrap;
+    }
+  }
+}

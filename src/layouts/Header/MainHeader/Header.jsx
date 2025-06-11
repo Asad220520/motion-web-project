@@ -6,9 +6,8 @@ import Logo from "@/components/Logo";
 import Button from "@/components/Button";
 import BurgerButton from "@/components/BurgerButton";
 
-const Header = () => {
+const MainHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "О нас", href: "/онас" },
@@ -92,4 +91,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default MainHeader;
