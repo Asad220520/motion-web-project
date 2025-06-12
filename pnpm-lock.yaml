@@ -38,6 +38,9 @@ importers:
       react-router-dom:
         specifier: ^7.6.1
         version: 7.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      redux:
+        specifier: ^5.0.1
+        version: 5.0.1
       swiper:
         specifier: ^11.2.8
         version: 11.2.8
