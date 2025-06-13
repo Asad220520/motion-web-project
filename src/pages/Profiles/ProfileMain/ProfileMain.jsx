@@ -15,9 +15,13 @@ const ProfileMain = () => {
   }, [tokens, dispatch]);
 
   return (
-    <div>
+    <div style={{display:"flex",
+      justifyContent:"center",
+      flexDirection:"column",
+      alignItems:"center",
+    }}>
       {profile ? (
-        <>
+        <div>
           <img
             src={profile.avatar || defaultAvatar}
             alt="avatar"
@@ -25,7 +29,7 @@ const ProfileMain = () => {
           />
           <p>Имя: {profile.username}</p>
           <h3>{profile.role || "Студент"}</h3>
-        </>
+        </div>
       ) : (
         <p>Загрузка...</p>
       )}
