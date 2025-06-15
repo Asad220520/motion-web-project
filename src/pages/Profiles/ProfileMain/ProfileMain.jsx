@@ -202,7 +202,7 @@ const ProfileMain = () => {
     if (!profile) {
       nav("/войти");
     }
-  }, [tokens, dispatch]);
+  }, [tokens, dispatch, profile, nav]);
 
   return (
     <div id="profileMain">
