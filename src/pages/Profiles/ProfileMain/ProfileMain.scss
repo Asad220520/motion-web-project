@@ -1,0 +1,91 @@
+#profileMain {
+  padding: 20px 0;
+  .profileMain {
+    &--info {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 100%;
+      padding-bottom: fluid(30, 20);
+      border-radius: var(--border-radius-m);
+      border: 1px solid var(--color-base);
+      &__img {
+        img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-top-left-radius: var(--border-radius-m);
+          border-top-right-radius: var(--border-radius-m);
+        }
+      }
+      &__title {
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        h1 {
+          margin-left: 160px;
+          display: flex;
+          flex-direction: column;
+          font-size: fluid(22, 16);
+          span {
+            font-size: fluid(16, 12);
+            font-weight: 300;
+            color: var(--color-base);
+          }
+        }
+        @include tablet {
+          & {
+            margin-top: 60px;
+            @include flex-center;
+            flex-direction: column;
+            gap: fluid(16, 12);
+            h1 {
+              margin: 0;
+              @include flex-center;
+              gap: fluid(10, 4);
+            }
+          }
+        }
+      }
+      &__user {
+        @include abs-y;
+        @include square(160px);
+        left: 20px;
+        top: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+        border-radius: 50%;
+        background: var(--color-white );
+        img {
+          @include square(160px);
+          padding: 4px;
+          border-radius: 50%;
+        }
+        &:hover {
+          box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+        }
+        @include tablet {
+          & {
+            @include abs-center;
+            top: 180px;
+          }
+        }
+      }
+    }
+    &--courses {
+      margin-top: fluid(30, 15);
+      padding: fluid(30, 15);
+      padding-bottom: fluid(30, 20);
+      border-radius: var(--border-radius-m);
+      border: 1px solid var(--color-base);
+      &__cat{
+        justify-content: start;
+      }
+    }
+  }
+}

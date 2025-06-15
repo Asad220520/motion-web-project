@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./Header.scss";
 import classNames from "classnames";
 import Logo from "@/components/Logo";
 import Button from "@/components/Button";
 import BurgerButton from "@/components/BurgerButton";
+import { useEffect, useState } from "react";
+import defaultAvatar from "../../../assets/images/defaultAvatar.png";
 
 const MainHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const tokens = useSelector((state) => state.auth.tokens);
+  const profile = useSelector((state) => state.profile.profile); // если хочешь показывать имя пользователя
+
   const menuItems = [
     { label: "Главная", href: "/" },
     { label: "О нас", href: "/онас" },
@@ -60,22 +66,34 @@ const MainHeader = () => {
           </nav>
 
           <div className="header__actions">
-            <NavLink to={"/войти"}>
-              <Button
-                className="header__button"
-                label="Войти"
-                mode="transparent"
-                isBlueLabel
-              />
-            </NavLink>
-            <NavLink to={"/регистрация"}>
-              <Button
-                className="header__button blue"
-                label="Присоединяйся"
-                mode="blue"
-                iconName="ArrowRight"
-              />
-            </NavLink>
+            {!tokens ? (
+              <>
+                <NavLink to={"/войти"}>
+                  <Button
+                    className="header__button"
+                    label="Войти"
+                    mode="transparent"
+                    isBlueLabel
+                  />
+                </NavLink>
+                <NavLink to={"/регистрация"}>
+                  <Button
+                    className="header__button blue"
+                    label="Присоединяйся"
+                    mode="blue"
+                    iconName="ArrowRight"
+                  />
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to={"/профиль"}>
+                  <div className="profile-header__user">
+                    <img src={profile.avatar || defaultAvatar} alt="avatar" />
+                  </div>
+                </NavLink>
+              </>
+            )}
           </div>
         </dialog>
 
