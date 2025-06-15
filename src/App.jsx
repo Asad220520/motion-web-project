@@ -11,7 +11,6 @@ import Payment from "@/payment/PaymentForm/PaymentForm";
 
 import ProfileMain from "@/pages/Profiles/ProfileMain/ProfileMain";
 import Chat from "@/pages/Profiles/Chat/Chat";
-import Grades from "@/pages/Profiles/Grades/Grades";
 import Help from "@/pages/Profiles/Help/Help";
 import CoursesProfile from "@/pages/Profiles/CoursesProfile/CoursesProfile";
 import Settings from "@/pages/Profiles/Settings/Settings";
@@ -22,6 +21,7 @@ import ProfileLayout from "./layouts/ProfileLauout/ProfileLayout";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "./redux/features/profile/profileSlice";
+import CourseRatingModal from "@/pages/Profiles/Grades/CourseRatingModal";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const App = () => {
         <Route path="/профиль" element={<ProfileMain />} />
         <Route path="/профиль/чат" element={<Chat />} />
         <Route path="/профиль/курсы" element={<CoursesProfile />} />
-        <Route path="/профиль/оценки" element={<Grades />} />
+        <Route path="/профиль/оценки" element={<CourseRatingModal />} />
         <Route path="/профиль/настройки" element={<Settings />} />
         <Route path="/профиль/помощь" element={<Help />} />
       </Route>

@@ -12,13 +12,12 @@ import {
   LogOut,
 } from "lucide-react";
 import "./Sidebar.scss";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import API_BASE_URL from "../../../../config/api";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const refresh = useSelector((state) => state.auth.tokens?.refresh);
-
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleLogout = async () => {
@@ -44,8 +43,8 @@ const Sidebar = () => {
     { label: "Курсы", to: "/профиль/курсы", icon: <BookOpen /> },
     { label: "Оценить", to: "/профиль/оценки", icon: <Star /> },
     { label: "Настройки", to: "/профиль/настройки", icon: <Settings /> },
-    { label: "Помощь", to: "/профиль/помощь", icon: <HelpCircle /> },
   ];
+  const help = { label: "Помощь", to: "/профиль/помощь", icon: <HelpCircle /> };
 
   return (
     <div>
@@ -54,20 +53,36 @@ const Sidebar = () => {
           <ul>
             {menu.map(({ label, to, icon }) => (
               <li key={label}>
-                <NavLink
-                  to={to}
-                  className={({ isActive }) => (isActive ? "active" : "")}
-                >
-                  {icon} <span>{label}</span>
-                </NavLink>
+                  <NavLink
+                    to={to}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    {icon} <span>{label}</span>
+                  </NavLink>
               </li>
             ))}
           </ul>
         </nav>
-        <button className="logout-btn" onClick={() => setShowConfirm(true)}>
-          <LogOut /> <span>Выйти</span>
-        </button>
-        {/* Модальное окно подтверждения */}
+        <nav className="sidebar-nav">
+          <ul>
+            <li key={help.label}>
+              <NavLink
+                to={help.to}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                {help.icon} <span>{help.label}</span>
+              </NavLink>
+            </li>
+            <li onClick={() => setShowConfirm(true)}>
+              <a
+                href="#"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <LogOut /> <span>Выйти</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
         {showConfirm && (
           <div className="modal-overlay">
             <div className="modal">
