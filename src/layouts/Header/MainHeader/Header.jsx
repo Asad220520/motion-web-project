@@ -88,7 +88,7 @@ const MainHeader = () => {
             ) : (
               <>
                 <NavLink to={"/профиль"}>
-                  <div className="profile-header__user">
+                  <div className="header__actions--user">
                     <img src={profile.avatar || defaultAvatar} alt="avatar" />
                   </div>
                 </NavLink>

@@ -130,6 +130,23 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
+      &--user {
+    @include square(54px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    border-radius: 50%;
+    img {
+      @include square(52px);
+      padding: 4px;
+      border-radius: 50%;
+    }
+    &:hover {
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+    }
+  }
   }
 
   &__burger-button {
