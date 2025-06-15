@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUserProfile } from "../../../redux/features/profile/profileSlice";
 import defaultAvatar from "../../../assets/images/defaultAvatar.png";
 import Logo from "@/components/Logo";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 const ProfileHeader = () => {
   const dispatch = useDispatch();
@@ -17,22 +18,25 @@ const ProfileHeader = () => {
   }, [tokens, dispatch]);
 
   return (
-    <header className="profile-header">
-      <div className="container">
-        <Logo className="header__logo" />
-        <div className="profile-header__left"></div>
-        <div className="profile-header__right">
-          {profile ? (
-            <div className="profile-header__user">
-              <img src={profile.avatar || defaultAvatar} alt="avatar" />
-              <span>{profile.username}</span>
+    <div className="profile">
+      <header className="profile-header">
+        <div className="container">
+          <Logo className="header__logo" />
+          <div className="profile-header__right">
+            <div className="profile-header__notif">
+              <IoNotificationsOutline />
             </div>
-          ) : (
-            <span>Загрузка...</span>
-          )}
+            {profile ? (
+              <div className="profile-header__user">
+                <img src={profile.avatar || defaultAvatar} alt="avatar" />
+              </div>
+            ) : (
+              <span>Загрузка...</span>
+            )}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 };
 
