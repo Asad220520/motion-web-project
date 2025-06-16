@@ -95,6 +95,8 @@ const MainHeader = () => {
                       src={profile.avatar || defaultAvatar}
                       alt="avatar"
                     />
+                  <div className="header__actions--user">
+                    <img src={profile.avatar || defaultAvatar} alt="avatar" />
                   </div>
                 </NavLink>
               </>
