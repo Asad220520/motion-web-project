@@ -206,3 +206,54 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .chat-desktop {
+    flex-direction: column;
+    height: 100%;
+
+    &__sidebar,
+    &__conversation {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__sidebar {
+      overflow-y: auto;
+    }
+
+    &__conversation {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__header {
+      h3 {
+        font-size: 18px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    &__messages {
+      padding: 10px;
+    }
+
+    &__input-area {
+      // flex-wrap: wrap;
+
+      input {
+        flex: 1 1 100%;
+        margin: 8px 0;
+      }
+    }
+
+    &__send-button {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+    }
+  }
+}
