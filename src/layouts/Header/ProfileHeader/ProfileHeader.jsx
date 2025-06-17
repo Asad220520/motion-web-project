@@ -27,8 +27,8 @@ const ProfileHeader = ({ onBurgerClick }) => {
               onClick={onBurgerClick}
               className="profile-header__button"
             />
-            {/* <Logo className="header__logo" /> */}
-            <div className="header__logo">Logo</div>
+            <Logo className="header__logo" />
+            {/* <div className="header__logo">Logo</div> */}
           </div>
 
           <div className="profile-header__right">

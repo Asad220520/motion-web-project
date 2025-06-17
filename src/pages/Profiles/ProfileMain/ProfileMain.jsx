@@ -196,13 +196,12 @@ const ProfileMain = () => {
       : courses.filter((course) => course.category === activeCategory);
 
   useEffect(() => {
-    if (tokens?.access) {
+    if (tokens?.access && status === "idle") {
       dispatch(fetchUserProfile());
-    }
-    if (!profile) {
+    } else if (!tokens?.access) {
       nav("/войти");
     }
-  }, [tokens, dispatch, profile, nav]);
+  }, [tokens, dispatch, nav, status]);
 
   return (
     <div id="profileMain">
