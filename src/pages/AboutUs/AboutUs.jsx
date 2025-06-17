@@ -10,19 +10,23 @@ import { useEffect } from "react";
 import API_BASE_URL from "../../config/api";
 
 const AboutUs = () => {
-  const [about , setAbout] = useState([])
-async function getAbout () {
-  let res = await axios.get(`http://13.60.235.183/aboutus/`)
+  const [about, setAbout] = useState([]);
 
-  const {data} = res
-  setAbout(data)
-}
-console.log(about);
-useEffect(() => {
-getAbout()
-}, [])
+  useEffect(() => {
+    async function getAbout() {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/aboutus/`);
+        setAbout(res.data);
+      } catch (error) {
+        console.error("Ошибка при получении About:", error);
+      }
+    }
+
+    getAbout();
+  }, []);
 
   return (
+
     <div className="AboutUs">
       <Rac  el={about} />
       <Imag el={about} />

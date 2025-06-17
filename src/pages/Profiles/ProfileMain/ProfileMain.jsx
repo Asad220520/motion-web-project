@@ -202,7 +202,8 @@ const ProfileMain = () => {
     if (!profile) {
       nav("/войти");
     }
-  }, [tokens, dispatch, profile, nav]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tokens, dispatch, nav]);
 
   return (
     <div id="profileMain">

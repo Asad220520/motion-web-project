@@ -15,7 +15,8 @@
     }
 
     h1 {
-      font-family: 'Rubik' sans-serif;
+      margin-left: 100px;
+      font-family: "Rubik" sans-serif;
       font-weight: 700;
       font-size: clamp(24px, 4vw, 48px);
       line-height: 63px;
@@ -25,12 +26,15 @@
       width: fluid(780, 355);
 
       @include mobile {
+        line-height: 28px;
+        margin-left: 0;
         text-align: center;
-        /* Центрируем текст на мобильных */
       }
     }
 
     &--nav {
+      @include abs-x;
+      left: 1050px;
       display: flex;
       align-items: end;
       justify-content: center;
@@ -40,14 +44,17 @@
       background: #96c9e5;
 
       @include mobile {
+        position: static;
+        margin-left: 250px;
+        position: none;
         width: 250px;
         height: 250px;
       }
 
       img {
+        transform: rotate(46deg);
         width: 450px;
         top: 50px;
-
         @include mobile {
           width: 300px;
         }

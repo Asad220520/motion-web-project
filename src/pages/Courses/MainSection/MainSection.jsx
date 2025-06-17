@@ -1,10 +1,11 @@
 import React from "react";
 import "./MainSection.scss";
 import Button from "@/components/Button";
-import img from "../../../assets/images/mainSection.png"
-const MainSection = () => {
-  const title =
-    "Развивайте свои навыки с помощью онлайн-курсов с онлайн-обучением";
+const MainSection = ({ el }) => {
+    if (!el || el.length === 0) {
+    return <div>Загрузка...</div>; // или любой fallback
+  }
+  const { title, image} = el[0];
   return (
     <section id="mainSection">
       <div className="container">
@@ -18,7 +19,7 @@ const MainSection = () => {
             />
           </div>
           <div className="mainSection--img">
-            <img src={img} alt="" />
+            <img src={image} alt="" />
           </div>
         </div>
       </div>
