@@ -10,11 +10,26 @@
     transform: translateY(-4px);
     box-shadow: 0 6px 10px rgba(66, 65, 65, 0.1);
   }
-  img {
-    width: 100%;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    margin-bottom: 16px;
+  .img {
+    position: relative;
+    img {
+      width: 100%;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      margin-bottom: 16px;
+    }
+        h4 {
+          @include abs-y;
+          top: 40px;
+          left: 20px;
+          margin: 0;
+          font-family: Montserrat;
+          font-size: fluid(14, 11);
+          color: var(--color-white);
+          padding: 4px 14px;
+          border-radius: var(--border-radius-xs);
+          background-color: var(--color-red);
+        }
   }
   .productCard {
     width: fluid(300, 152);
@@ -47,6 +62,7 @@
     a {
       @include flex-center;
       padding: fluid-to-laptop(16, 8) fluid-to-laptop(24, 10);
+      margin-top:fluid-to-laptop(24, 10);
       font-size: fluid(18, 11);
       font-weight: 600;
       color: var(--color-blue);
