@@ -1,8 +1,5 @@
 #text {
-  padding: 90px 0;
-
   .text {
-    // width: clamp(200px, 80vw, 1146px);
     max-width: 100%;
     margin: 0 auto;
 
@@ -11,10 +8,18 @@
     }
 
     &--nav {
+      margin: 0 auto;
+      max-width: 1100px;
       display: flex;
       align-items: center;
       gap: 30px;
-      margin-bottom: 30px;
+      img {
+        width: 460px;
+        height: 490px;
+        border-top-left-radius: 90px;
+        border-bottom-right-radius: 90px;
+        object-fit: cover;
+      }
 
       @media (max-width: 768px) {
         flex-direction: column;
@@ -22,18 +27,13 @@
       }
     }
 
-    img {
-      width: clamp(120px, 29vw, 459px);
-      height: clamp(150px, 31vw, 489px);
-      object-fit: contain;
-    }
-
     p {
+      margin: 0 auto;
+      max-width: 1100px;
       font-weight: 400;
       font-size: clamp(14px, 2vw, 22px);
       line-height: 1.5;
       color: #000000;
-      margin: 0;
 
       &.additional-text {
         margin-top: 20px;

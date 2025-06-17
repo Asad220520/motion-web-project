@@ -3,6 +3,7 @@ import { Outlet, useMatch } from "react-router-dom";
 // import Header from "./Header/MainHeader/Header";
 import Footer from "./Footer/Footer";
 import MainHeader from "./Header/MainHeader/Header";
+import Scroll from "../components/Scroll/Scroll";
 
 const MainLayout = () => {
    const match = useMatch("/detail/:detailId");
@@ -20,14 +21,15 @@ const MainLayout = () => {
   const shouldShowHeader = !match || isTablet;
 
   return (
-    <>
+    <div className="App">
       {/* <Header /> */}
       {shouldShowHeader && <MainHeader />}
+      <Scroll/>
       <main>
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 

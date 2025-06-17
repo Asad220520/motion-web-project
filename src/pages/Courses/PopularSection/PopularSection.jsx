@@ -7,7 +7,7 @@ import img1 from "../../../assets/icons/card-icon-1.svg";
 import img2 from "../../../assets/icons/card-icon-2.svg";
 import img3 from "../../../assets/icons/card-icon-3.svg";
 import ProductCard from "../ProductCard/ProductCard";
-const PopularSection = () => {
+const PopularSection = ({ el }) => {
   const [slice, setSlice] = useState(4);
   const categories = [
     "Все Курсы",
@@ -18,7 +18,10 @@ const PopularSection = () => {
   ];
 
   const [activeCategory, setActiveCategory] = useState("Все Курсы");
-
+  if (!el || el.length === 0) {
+    return <div>Загрузка...</div>; // или любой fallback
+  }
+  const { famous_course, famous_course_description } = el[0];
   const courses = [
     {
       id: 1,
@@ -26,6 +29,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Управление Компанией",
+      price: "1500",
+      status: "Бесплатно",
       info: [
         {
           text: "22ч 30мин",
@@ -47,6 +52,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Командообразование",
+      price: "1500",
+      status: "Бесплатно",
       info: [
         {
           text: "22ч 30мин",
@@ -68,6 +75,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Маркетинг",
+      price: "1500",
+      status: "Платно",
       info: [
         {
           text: "22ч 30мин",
@@ -89,6 +98,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Управление Компанией",
+      price: "1500",
+      status: "Платно",
       info: [
         {
           text: "22ч 30мин",
@@ -110,6 +121,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Командообразование",
+      price: "1500",
+      status: "Бесплатно",
       info: [
         {
           text: "22ч 30мин",
@@ -131,6 +144,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Маркетинг",
+      price: "1500",
+      status: "Платно",
       info: [
         {
           text: "22ч 30мин",
@@ -152,6 +167,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Управление Компанией",
+      price: "1500",
+      status: "Платно",
       info: [
         {
           text: "22ч 30мин",
@@ -173,6 +190,8 @@ const PopularSection = () => {
       desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
       img: img,
       category: "Командообразование",
+      price: "1500",
+      status: "Платно",
       info: [
         {
           text: "22ч 30мин",
@@ -200,11 +219,8 @@ const PopularSection = () => {
       <div className="container">
         <div className="popularSection">
           <div className="popularSection--title">
-            <h1>Популярные курсы</h1>
-            <p>
-              Мы предоставляем множество функций, которые вы можете
-              использовать. Постепенное накопление информации.
-            </p>
+            <h1>{famous_course}</h1>
+            <p>{famous_course_description}</p>
           </div>
           {/* Категории */}
           <div className="popularSection--categories">

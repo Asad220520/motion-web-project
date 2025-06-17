@@ -1,18 +1,23 @@
 import React from "react";
 import "./Rac.scss";
-import logorac from "../../../../public/raclogo.png";
 
-const Rac = () => {
+const Rac = ({el}) => {
+   if (!el || el.length === 0) {
+    return <div>Загрузка...</div>; // или любой fallback
+  }
+    const {
+    title,
+    aboutus_images,
+  } = el[0];
   return (
     <section id="rac">
       <div className="container">
         <div className="rac">
           <h1>
-            Мы являемся топливом для вашего бизнеса, готовы дать вам образование
-            и поднять ваш бренд до небес.
+            {title}
           </h1>
           <div className="rac--nav">
-            <img src={logorac} alt="img" />
+            <img src={aboutus_images[0].image} alt="img" />
           </div>
         </div>
       </div>
