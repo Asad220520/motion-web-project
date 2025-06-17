@@ -5,8 +5,9 @@ import { fetchUserProfile } from "../../../redux/features/profile/profileSlice";
 import defaultAvatar from "../../../assets/images/defaultAvatar.png";
 import Logo from "@/components/Logo";
 import { IoNotificationsOutline } from "react-icons/io5";
+import BurgerButton from "../../../components/BurgerButton/BurgerButton";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ onBurgerClick }) => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile.profile);
   const tokens = useSelector((state) => state.auth.tokens);
@@ -21,7 +22,15 @@ const ProfileHeader = () => {
     <div className="profile">
       <header className="profile-header">
         <div className="container">
-          <Logo className="header__logo" />
+          <div className="profile-header__left">
+            <BurgerButton
+              onClick={onBurgerClick}
+              className="profile-header__button"
+            />
+            {/* <Logo className="header__logo" /> */}
+            <div className="header__logo">Logo</div>
+          </div>
+
           <div className="profile-header__right">
             <div className="profile-header__notif">
               <IoNotificationsOutline />

@@ -29,6 +29,11 @@
     column-gap: 16px;
   }
 
+  &__logo{
+    font-weight: 700;
+    color: #4F5665;
+    font-size: 24px;
+  }
   &__overlay-menu-dialog {
     position: fixed;
     inset: 0;
