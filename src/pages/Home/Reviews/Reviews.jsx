@@ -7,12 +7,18 @@ import "swiper/css/pagination";
 import "./Reviews.scss";
 import ReviewsCard from "./ReviewsCard/ReviewsCard";
 import Button from "@/components/Button/Button";
+import { apiRequest } from "../../../api/apiRequest";
 
 const Reviews = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const paginationRef = useRef(null);
   const [swiperReady, setSwiperReady] = useState(false);
+  const [titleData, setTitleData] = useState({
+    title: "Нам доверяют тысячи довольных учеников",
+    description:
+      "Мы предоставляем множество функций, которые вы можете использовать. Постепенное накопление информации.",
+  });
 
   const reviews = [
     {
@@ -69,17 +75,31 @@ const Reviews = () => {
     }
   }, []);
 
+  useEffect(() => {
+    apiRequest("/titlereview/")
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setTitleData({
+            title: data[0].title || titleData.title,
+            description:
+              data[0].description?.replace(/\r?\n/g, " ") ||
+              titleData.description,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error("Ошибка загрузки заголовка отзывов:", err);
+      });
+  }, []);
+
   return (
     <section className="reviews">
       <div className="container">
         <div className="reviews__inner">
-          <h2 className="reviews__title">
-            Нам доверяют тысячи <br /> довольных учеников
-          </h2>
-          <p className="reviews__description">
-            Мы предоставляем множество функций, которые вы можете <br />
-            использовать. Постепенное накопление информации.
-          </p>
+          <div className="reviews__div">
+            <h2 className="reviews__title">{titleData.title}</h2>
+            <p className="reviews__description">{titleData.description}</p>
+          </div>
 
           {swiperReady && (
             <Swiper
@@ -116,7 +136,6 @@ const Reviews = () => {
               ))}
             </Swiper>
           )}
-
           <div className="reviews__navigation">
             <div ref={paginationRef} className="reviews__dots"></div>
             <div className="reviews__arrows">
