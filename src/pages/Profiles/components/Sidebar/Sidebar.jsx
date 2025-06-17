@@ -36,7 +36,6 @@ const Sidebar = ({ onClose }) => {
       navigate("/войти");
     }
   };
-
   const menu = [
     { label: "Профиль", to: "/профиль", icon: <User /> },
     { label: "Чат", to: "/профиль/чат", icon: <MessageCircle /> },
