@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
-
 import WhyCurs from "./WhyCurs";
+import { apiRequest } from "../../../api/apiRequest";
 
 const WhyCursApi = () => {
   const [courseData, setCourseData] = useState(null);
 
   useEffect(() => {
-    // Запрос к API
-    fetch("/api/course-details")
-      .then((response) => response.json())
-      .then((data) => setCourseData(data))
-      .catch((error) => console.error("Error fetching data:", error));
+    apiRequest("/whycourse/")
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setCourseData(data[0]); 
+        }
+      })
+      .catch((error) => console.error("Error fetching course data:", error));
   }, []);
 
-  if (!courseData)
-    return (
-      <div>
-        {/* <h1>loading</h1> */}
-        <WhyCurs />
-      </div>
-    );
+  if (!courseData) return <div>Loading...</div>;
 
   return (
     <div>
-      <WhyCurs data={courseData.whyCursSection} />
+      <WhyCurs data={courseData} />
     </div>
   );
 };

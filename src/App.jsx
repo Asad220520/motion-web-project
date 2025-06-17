@@ -22,6 +22,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "./redux/features/profile/profileSlice";
 import CourseRatingModal from "@/pages/Profiles/Grades/CourseRatingModal";
+import ForgotPassword from "./auth/ForgotPassword/ForgotPassword";
+import ResetPasswordConfirm from "./auth/ResetPasswordConfirm/ResetPasswordConfirm";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -49,6 +51,11 @@ const App = () => {
       <Route element={<AuthLayout />}>
         <Route path="/регистрация" element={<Register />} />
         <Route path="/войти" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="/reset-password-confirm"
+          element={<ResetPasswordConfirm />}
+        />
         <Route path="/оплата" element={<Payment />} />
       </Route>
 
