@@ -2,22 +2,31 @@ import Sidebar from "../../pages/Profiles/components/Sidebar/Sidebar";
 import { Outlet, useLocation } from "react-router-dom";
 import "./profileLayout.scss";
 import ProfileHeader from "../Header/ProfileHeader/ProfileHeader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProfileLayout = () => {
-    const location = useLocation();
+  const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const content = document.querySelector(".profile-content");
     if (content) content.scrollTop = 0;
   }, [location.pathname]);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
     <div>
-      <ProfileHeader />
-      <div className="profile-layout">
-        <Sidebar />
-        <main className="profile-content">
+      <ProfileHeader onBurgerClick={toggleSidebar} />
+      <div className={`profile-layout ${isSidebarOpen ? "sidebar-open" : ""}`}>
+        <Sidebar onClose={closeSidebar} />
+        <main className="profile-content" onClick={closeSidebar}>
           <Outlet />
         </main>
       </div>

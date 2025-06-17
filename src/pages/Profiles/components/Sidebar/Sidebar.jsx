@@ -14,7 +14,7 @@ import {
 import "./Sidebar.scss";
 import API_BASE_URL from "../../../../config/api";
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const refresh = useSelector((state) => state.auth.tokens?.refresh);
@@ -36,7 +36,6 @@ const Sidebar = () => {
       navigate("/войти");
     }
   };
-
   const menu = [
     { label: "Профиль", to: "/профиль", icon: <User /> },
     { label: "Чат", to: "/профиль/чат", icon: <MessageCircle /> },
@@ -50,15 +49,17 @@ const Sidebar = () => {
     <div>
       <aside className="sidebar">
         <nav className="sidebar-nav">
+          <h1 onClick={() => onClose()}>X</h1>
           <ul>
             {menu.map(({ label, to, icon }) => (
               <li key={label}>
-                  <NavLink
-                    to={to}
-                    className={({ isActive }) => (isActive ? "active" : "")}
-                  >
-                    {icon} <span>{label}</span>
-                  </NavLink>
+                <NavLink
+                  onClick={() => onClose()}
+                  to={to}
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  {icon} <span>{label}</span>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -74,12 +75,12 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li onClick={() => setShowConfirm(true)}>
-              <a
-                href="#"
-                className={({ isActive }) => (isActive ? "active" : "")}
+              <NavLink
+                to="#"
+                className={({ isActive }) => (isActive ? "" : "active")}
               >
                 <LogOut /> <span>Выйти</span>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>

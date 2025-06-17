@@ -39,6 +39,7 @@ const MainHeader = () => {
     <header className="header" data-js-overlay-menu="">
       <div className="header__inner container">
         <Logo className="header__logo" />
+        {/* <div className="header__logo">Logo</div> */}
 
         <dialog
           className={classNames("header__overlay-menu-dialog", {
