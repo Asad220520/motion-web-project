@@ -12,6 +12,18 @@
   left: 0;
   z-index: 1;
 
+  .sidebar-nav h1 {
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+
+    text-align: end;
+    color: rgb(149, 143, 143);
+    font-weight: 400;
+  }
+
   .sidebar-nav ul {
     list-style: none;
     padding: 0;
@@ -33,9 +45,11 @@
         &:hover {
           background-color: #f0f0f0;
         }
+
         &:active {
           scale: 0.9.9;
         }
+
         &.active {
           background-color: #007bff;
           color: white;
