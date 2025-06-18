@@ -26,6 +26,8 @@ import LessonPage from "./pages/LessonPage/LessonPage";
 
 import ForgotPassword from "./auth/ForgotPassword/ForgotPassword";
 import ResetPasswordConfirm from "./auth/ResetPasswordConfirm/ResetPasswordConfirm";
+import CourseCreateForm from "./pages/Profiles/CourseCreateForm/CourseCreateForm";
+import LessonCreateForm from "./pages/Profiles/CourseCreateForm/LessonCreateForm/LessonCreateForm";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -70,6 +72,8 @@ const App = () => {
         <Route path="/профиль/настройки" element={<Settings />} />
         <Route path="/профиль/помощь" element={<Help />} />
         <Route path="/lesson/:id" element={<LessonPage />} />
+        <Route path="/profiles/course-create" element={<CourseCreateForm />} />
+        <Route path="/profiles/lesson-create" element={<LessonCreateForm />} />
       </Route>
     </Routes>
   );

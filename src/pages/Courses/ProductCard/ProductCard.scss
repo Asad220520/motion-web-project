@@ -1,4 +1,5 @@
 #productCard {
+  position: relative;
   width: fluid(328, 165);
   @include flex-center;
   flex-direction: column;
@@ -19,20 +20,35 @@
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
       margin-bottom: 16px;
-      object-fit: cover
+      object-fit: cover;
     }
-        h4 {
-          @include abs-y;
-          top: 40px;
-          left: 20px;
-          margin: 0;
-          font-family: Montserrat;
-          font-size: fluid(14, 11);
-          color: var(--color-white);
-          padding: 4px 14px;
-          border-radius: var(--border-radius-xs);
-          background-color: var(--color-red);
-        }
+    h4 {
+      @include abs-y;
+      top: 40px;
+      left: 20px;
+      margin: 0;
+      font-family: Montserrat;
+      font-size: fluid(14, 11);
+      color: var(--color-white);
+      padding: 4px 14px;
+      border-radius: var(--border-radius-xs);
+      background-color: var(--color-red);
+    }
+  }
+  .favorite {
+    @include abs-center;
+    @include square(32px);
+    border-radius: 50%;
+    top: 40%;
+    background: var(--color-white);
+    a {
+     @include square(100%);
+      @include flex-center;
+      color: var(--color-black);
+    }
+    .is_active {
+     color: yellow;
+    }
   }
   .productCard {
     width: fluid(300, 152);
@@ -65,7 +81,7 @@
     a {
       @include flex-center;
       padding: fluid-to-laptop(16, 8) fluid-to-laptop(24, 10);
-      margin-top:fluid-to-laptop(24, 10);
+      margin-top: fluid-to-laptop(24, 10);
       font-size: fluid(18, 11);
       font-weight: 600;
       color: var(--color-blue);
