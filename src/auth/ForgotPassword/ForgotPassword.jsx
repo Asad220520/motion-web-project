@@ -3,6 +3,7 @@ import API_BASE_URL from "../../config/api";
 import Button from "@/components/Button";
 import "./ForgotPassword.scss";
 import { useNavigate } from "react-router-dom";
+
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -28,22 +29,25 @@ const ForgotPassword = () => {
         throw new Error(data.detail || "Ошибка при отправке запроса");
       }
 
-      setMessage("Инструкция по сбросу пароля отправлена на почту.");
+      setMessage("Код отправлен на почту.");
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
-  function clickIx() {
-    navigate("/войти");
-  }
+
+  const goToReset = () => {
+    navigate("/reset-password-confirm", { state: { email } });
+  };
+
   return (
     <div className="container">
-      <h2 onClick={clickIx}>X</h2>
+      <h2 onClick={() => navigate("/войти")} style={{ cursor: "pointer" }}>
+        X
+      </h2>
       <div className="forgot-password">
         <h2>Восстановление пароля</h2>
-        {message && <div className="success-message">{message}</div>}
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">Введите вашу почту</label>
@@ -61,6 +65,12 @@ const ForgotPassword = () => {
             disabled={loading}
           />
         </form>
+        {message && (
+          <>
+            <div className="success-message">{message}</div>
+            <Button label="Ввести код" onClick={goToReset} />
+          </>
+        )}
       </div>
     </div>
   );
