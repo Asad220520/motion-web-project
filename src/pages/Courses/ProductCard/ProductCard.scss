@@ -12,11 +12,14 @@
   }
   .img {
     position: relative;
+    width: 100%;
     img {
+      height: fluid(338, 180);
       width: 100%;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
       margin-bottom: 16px;
+      object-fit: cover
     }
         h4 {
           @include abs-y;

@@ -22,6 +22,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserProfile } from "./redux/features/profile/profileSlice";
 import CourseRatingModal from "@/pages/Profiles/Grades/CourseRatingModal";
+import LessonPage from "./pages/LessonPage/LessonPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ const App = () => {
         <Route path="/профиль/оценки" element={<CourseRatingModal />} />
         <Route path="/профиль/настройки" element={<Settings />} />
         <Route path="/профиль/помощь" element={<Help />} />
+        <Route path="/lesson/:id" element={<LessonPage />} />
       </Route>
     </Routes>
   );

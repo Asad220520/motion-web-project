@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@/components/Button";
 import "./ProductCard.scss";
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -15,7 +14,7 @@ const ProductCard = ({ el }) => {
       </div>
 
       <div className="productCard">
-        <h3>{el.title}</h3>
+        <h3>{el.title.slice(0, 30)}..</h3>
         <p>{el.desc}</p>
         <div className="productCard--info">
           {el.info.map((el, id) => (

@@ -1,0 +1,183 @@
+.lesson {
+  @include flex-center;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: fluid(40, 20) 0;
+  @include tablet {
+    & {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    h2 {
+      font-size: fluid(20, 16);
+    }
+    & > .lesson__back {
+      @include flex-center;
+      @include square(50px);
+      background: transparent;
+      border: 1.6px solid var(--color-grey);
+      font-size: fluid(24, 16);
+      border-radius: var(--border-radius-l);
+    }
+  }
+  &__content {
+    margin-top: fluid(20, 10);
+    @include flex-center;
+    flex-direction: column;
+    align-items: start;
+    gap: fluid(20, 10);
+    width: fluid(850, 350);
+  }
+  &__video {
+    width: 100%;
+  }
+  h3 {
+    font-size: fluid(22, 16);
+    font-weight: 600;
+  }
+  &__meta {
+    color: gray;
+    font-size: 0.9rem;
+    display: flex;
+    gap: 1rem;
+  }
+  &__info {
+    @include flex-center;
+    justify-content: space-between;
+    align-items: center;
+    & .lesson__share {
+      background: #2b8ded;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+
+  &__comments {
+    @include flex-center;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fluid(400, 300);
+    height: 100vh;
+    border-left: 1px solid #000;
+    @include tablet {
+      & {
+        padding: 20px;
+        flex-direction: column-reverse;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        align-items: flex-start;
+        border-left: none;
+      }
+    }
+    &-list {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .comment {
+        display: flex;
+        align-items: flex-start;
+        gap: fluid(10, 5);
+        &__avatar {
+          @include square(54px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: box-shadow 0.3s ease;
+          border-radius: 50%;
+          img {
+            @include square(52px);
+            padding: 4px;
+            border-radius: 50%;
+          }
+        }
+        &__info {
+          @include flex-center;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.2rem;
+          &--date {
+            @include flex-center;
+            gap: 10px;
+            h3 {
+              margin: 0;
+              font-size: fluid(20, 16);
+              color: var(--color-black);
+            }
+            span {
+              font-size: fluid(17, 14);
+              color: var(--color-black);
+              font-weight: 400;
+            }
+          }
+          p {
+            margin: 0;
+            font-weight: 400;
+            font-size: fluid(17, 12);
+            color: var(--color-black);
+          }
+          &--btn {
+            @include flex-center;
+            gap: 40px;
+            button {
+              @include flex-center;
+              background: none;
+              border: none;
+              color: var(--color-grey);
+              cursor: pointer;
+              font-size: fluid(18, 12);
+              &:hover {
+                color: var(--color-blue);
+              }
+            }
+            h5 {
+              margin: 0;
+              font-weight: 400;
+              font-size: fluid(16, 12);
+              color: var(--color-grey);
+            }
+          }
+        }
+      }
+    }
+
+    &-form {
+      @include flex-center;
+      margin-bottom: fluid(100, 30);
+      position: relative;
+      input {
+        background: var(--color-grey);
+        padding-left: 10px;
+        width: fluid(340, 300);
+        height: 46px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+      }
+
+      a {
+        @include abs-y;
+        right: 10px;
+        font-size: fluid(24, 16);
+        padding: 0;
+        margin: 0;
+        background: var(--color-grey);
+        border: none;
+
+        cursor: pointer;
+        &:hover {
+          color: var(--color-blue);
+        }
+      }
+    }
+  }
+}
