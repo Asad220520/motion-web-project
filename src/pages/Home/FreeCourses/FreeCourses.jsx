@@ -1,109 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../../Courses/ProductCard/ProductCard";
 import "./FreeCourses.scss";
-import img from "../../../assets/images/productCard.png";
-import img1 from "../../../assets/icons/card-icon-1.svg";
-import img2 from "../../../assets/icons/card-icon-2.svg";
-import img3 from "../../../assets/icons/card-icon-3.svg";
-const mockCourses = [
-  {
-    id: 1,
-    title: "Как ставить о оценивать задачи",
-    desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
-    img: img,
-    category: "Управление Компанией",
-    info: [
-      {
-        text: "22ч 30мин",
-        img: img1,
-      },
-      {
-        text: "64 уроков",
-        img: img2,
-      },
-      {
-        text: "Прогресс",
-        img: img3,
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Как ставить о оценивать задачи",
-    desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
-    img: img,
-    category: "Командообразование",
-    info: [
-      {
-        text: "22ч 30мин",
-        img: img1,
-      },
-      {
-        text: "64 уроков",
-        img: img2,
-      },
-      {
-        text: "Прогресс",
-        img: img3,
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Как ставить о оценивать задачи",
-    desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
-    img: img,
-    category: "Управление Компанией",
-    info: [
-      {
-        text: "22ч 30мин",
-        img: img1,
-      },
-      {
-        text: "64 уроков",
-        img: img2,
-      },
-      {
-        text: "Прогресс",
-        img: img3,
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Как ставить о оценивать задачи",
-    desc: "Мы ориентируемся на эргономику иты где работаешь. Это всего лишь нажатие клавиши.",
-    img: img,
-    category: "Командообразование",
-    info: [
-      {
-        text: "22ч 30мин",
-        img: img1,
-      },
-      {
-        text: "64 уроков",
-        img: img2,
-      },
-      {
-        text: "Прогресс",
-        img: img3,
-      },
-    ],
-  },
-];
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchCourses } from "../../../redux/features/courses/CoursesSlice";
 
 const FreeCourses = () => {
-  const [courses, setCourses] = useState([]);
+  const dispatch = useDispatch();
+  const {
+    items: courses,
+    status,
+    error,
+  } = useSelector((state) => state.courses);
 
   useEffect(() => {
-    // Эмулируем задержку как будто это запрос к API
-    const timer = setTimeout(() => {
-      setCourses(mockCourses);
-    }, 500);
+    dispatch(fetchCourses());
+  }, [dispatch]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  if (!courses || courses.length === 0) {
+    return <div>Загрузка...</div>;
+  }
 
+
+  // Нормализация курса
+  const normalizeCourse = (course) => ({
+    id: course.id,
+    title: course.title,
+    desc: course.brief_description?.trim(),
+    img: course.image,
+    category: course.category?.category_name || "Без категории",
+    price: course.price,
+    status: course.status_course,
+    info: [
+      {
+        text: course.total_duration,
+        img: course.time_image,
+      },
+      {
+        text: course.lessons_count,
+        img: course.lesson_image,
+      },
+      {
+        text: course.progress,
+        img: course.progress_image,
+      },
+    ],
+  });
+
+  // Фильтрация по статусу "Бесплатно"
+  const freeCourses = courses.filter((course) => course.status_course === "Бесплатно");
+  if (status === "loading") return <p>Загрузка...</p>;
+  if (status === "failed") return <p>Ошибка: {error}</p>;
   return (
     <section className="freeCourses">
       <div className="container">
@@ -116,8 +63,8 @@ const FreeCourses = () => {
         </div>
 
         <div className="freeCourses__list">
-          {courses.length > 0 ? (
-            courses.map((el) => <ProductCard key={el.id} el={el} />)
+          {freeCourses.length > 0 ? (
+            freeCourses.map((el) => <ProductCard key={el.id} el={normalizeCourse(el)} />)
           ) : (
             <p>Загрузка курсов...</p>
           )}
