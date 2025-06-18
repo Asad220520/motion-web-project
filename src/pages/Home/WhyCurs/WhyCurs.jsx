@@ -2,31 +2,22 @@ import React from "react";
 import "./WhyCurs.scss";
 
 const WhyCurs = ({ data }) => {
+  if (!data) return null;
+
   const {
     title = "Почему (название курса)",
-    description = "Мы предоставляем множество функций, которые вы можете использовать. Постепенное накопление информации",
-    stats = [
-      { value: "100+", text: "Количество студентов" },
-      { value: "80+", text: "Успешных проектов" },
-    ],
-    features = [
-      {
-        icon: "🎓",
-        title: "Личное обучение",
-        description: "Индивидуальный подход к каждому студенту",
-      },
-      {
-        icon: "💻",
-        title: "Интерактивные уроки",
-        description: "Практические задания и обратная связь",
-      },
-      {
-        icon: "🛟",
-        title: "24/7 Поддержка",
-        description: "Помощь в любое время",
-      },
-    ],
-  } = data || {};
+    description = "",
+    title_of_number1 = "100+",
+    description_of_number1 = "",
+    title_of_number2 = "80+",
+    description_of_number2 = "",
+    whycourse_highlight = [],
+  } = data;
+
+  const stats = [
+    { value: title_of_number1, text: description_of_number1 },
+    { value: title_of_number2, text: description_of_number2 },
+  ];
 
   return (
     <section className="whyCurs">
@@ -37,7 +28,6 @@ const WhyCurs = ({ data }) => {
               <h2 className="whyCurs__title">{title}</h2>
               <p className="whyCurs__description">{description}</p>
             </div>
-
             <div className="whyCurs__stats">
               {stats.map((stat, index) => (
                 <div className="stat-card" key={`stat-${index}`}>
@@ -49,11 +39,19 @@ const WhyCurs = ({ data }) => {
           </div>
 
           <div className="whyCurs__right">
-            {features.map((feature, index) => (
+            {whycourse_highlight.map((feature, index) => (
               <div className="feature-card" key={`feature-${index}`}>
-                <div className="feature-icon">{feature.icon}</div>
-                <h4 className="feature-title">{feature.title}</h4>
-                <p className="feature-description">{feature.description}</p>
+                <div className="feature-icon">
+                  <img
+                    src={feature.highlight_icon}
+                    alt={feature.highlight_title}
+                    style={{ width: 40, height: 40 }}
+                  />
+                </div>
+                <h4 className="feature-title">{feature.highlight_title}</h4>
+                <p className="feature-description">
+                  {feature.highlight_description}
+                </p>
               </div>
             ))}
           </div>
