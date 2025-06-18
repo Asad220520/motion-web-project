@@ -6,11 +6,20 @@ import "./Detail.scss";
 import axios from "axios";
 import API_BASE_URL from "../../../config/api";
 import CourseLessons from "../VideosSection/Videos";
+import { fetchUserProfile } from "../../../redux/features/profile/profileSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Detail = () => {
   const [detail, setDetail] = useState([]);
   const { detailId } = useParams();
   const [slice, setSlice] = useState(3);
+  const tokens = useSelector((state) => state.auth.tokens);
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile.profile);
+  const isPurchased = profile?.purchased_courses?.some(
+  (item) => item.course === detail.id
+);
 
   async function getDetail() {
     try {
@@ -21,9 +30,31 @@ const Detail = () => {
     }
   }
 
+  async function Purchased(course) {
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/courses/buy/`,
+        { course: course.id }, // тело запроса, обычно указывают id курса
+        {
+          headers: {
+            Authorization: `Bearer ${tokens.access}`, // передаём токен доступа
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Курс добавлен в покупки:", response.data);
+      dispatch(fetchUserProfile());
+    } catch (error) {
+      console.error(
+        "Ошибка добавления в покупки:",
+        error.response?.data || error.message
+      );
+    }
+  }
+
   useEffect(() => {
     getDetail();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailId]);
 
   const { title, description, category, image, status_course, price } = detail;
@@ -49,8 +80,9 @@ const Detail = () => {
               <div className="detail--content__img">
                 <img src={image ? image : img} alt="" />
                 <h4>
-                  {status_course === "Бесплатно" ? status_course : price}
-                  {status_course === "Бесплатно" ? null : "Сом"}
+                  {status_course === "Бесплатно"
+                    ? status_course
+                    : `${price} Сом`}
                 </h4>
               </div>
               <div className="detail--content__info">
@@ -73,9 +105,9 @@ const Detail = () => {
             >
               {isExpanded ? "Скрыть" : "Показать все"}
             </button>
-            <NavLink to={"/оплата"}>
-              <Button label="Купить курс" mode="blue" />
-            </NavLink>
+            <a onClick={() => Purchased(detail)} href="#">
+              <Button label={isPurchased ? "Курс куплен" : "Купить курс"} mode="blue" />
+            </a>
           </div>
         </div>
       </div>

@@ -21,7 +21,6 @@ const LessonPage = () => {
   const [newComment, setNewComment] = useState("");
   const nav = useNavigate();
   const tokens = useSelector((state) => state.auth.tokens);
-  console.log(Number(id));
 
   const handleCommentSubmit = async () => {
     if (!newComment.trim()) return;
@@ -86,7 +85,6 @@ const LessonPage = () => {
 
   if (!lesson) return <p>Загрузка...</p>;
   if (lesson.status !== "Открытый") return <p>Этот урок платный.</p>;
-  console.log("Access token:", tokens?.access);
   if (!tokens?.access) {
     alert("Пожалуйста, войдите в систему, чтобы оставить комментарий");
     return;
