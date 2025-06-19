@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import "./CourseRatingModal.scss";
 import { fetchUserProfile } from "../../../redux/features/profile/profileSlice";
+import { useRef } from "react";
 
 const CourseRatingModal = () => {
   const [rating, setRating] = useState(0);
@@ -13,7 +14,7 @@ const CourseRatingModal = () => {
   const tokens = useSelector((state) => state.auth.tokens);
   const nav = useNavigate();
   const profile = useSelector((state) => state.profile.profile);
-
+  const cardRef = useRef();
   useEffect(() => {
     if (tokens?.access) {
       dispatch(fetchUserProfile());
@@ -38,7 +39,7 @@ const CourseRatingModal = () => {
       await axios.post(
         "http://13.60.235.183/course/reviews/create/",
         {
-          course: 1 + 1 ,
+          course: 1 + 1,
           city: profile?.city || "Bishkek", // из профиля или дефолт
           region: profile?.region || "Kyrgyzстан",
           rating,
@@ -59,10 +60,14 @@ const CourseRatingModal = () => {
       alert("Ошибка при отправке отзыва");
     }
   };
-
+  const handleClickOutside = (e) => {
+    if (cardRef.current && !cardRef.current.contains(e.target)) {
+      nav("/профиль");
+    }
+  };
   return (
-    <div className="modal-overlay">
-      <div className="modal">
+    <div onClick={handleClickOutside} className="modal-overlay">
+      <div ref={cardRef} className="modal">
         <button className="close-btn" onClick={() => nav("/профиль")}>
           <IoClose size={24} />
         </button>

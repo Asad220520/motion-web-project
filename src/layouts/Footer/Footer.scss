@@ -1,6 +1,5 @@
 .footer {
   background-color: var(--color-footer);
-
   &__inner {
     display: flex;
     justify-content: space-between;
@@ -9,10 +8,34 @@
       display: block;
     }
   }
-
   &__descript {
+    @include flex-center;
+    flex-direction: column;
+    align-items: flex-start;
+   .footer__logo{
+      font-weight: 800;
+      font-size: fluid(32, 20);
+      color: var(--color-black);
+    }
     p {
       width: 340px;
+    }
+    .footer__cyrcle{
+      display: flex;
+      align-items: center;
+      gap: fluid(16, 8);
+      .cyrcle{
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: var(--color-blue);
+      }
+    }
+    span{
+      margin-top: fluid(40, 20);
+      font-size: fluid(16, 14);
+      font-weight: 500;
+      color: var(--color-gray);
     }
   }
 
