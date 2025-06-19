@@ -86,7 +86,8 @@ const LessonPage = () => {
   if (!lesson) return <p>Загрузка...</p>;
   if (lesson.status !== "Открытый") return <p>Этот урок платный.</p>;
   if (!tokens?.access) {
-    alert("Пожалуйста, войдите в систему, чтобы оставить комментарий");
+    alert("Пожалуйста, войдите и зарегистрируйтесь, чтобы просмотреть уроки.");
+    nav("/войти");
     return;
   }
   return (
@@ -112,7 +113,7 @@ const LessonPage = () => {
             <div className="lesson__info">
               <h3>{lesson.goal}</h3>
               <button onClick={handleShare} className="lesson__share">
-                 Поделиться
+                Поделиться
               </button>
             </div>
             <div className="lesson__meta">
@@ -154,7 +155,6 @@ const LessonPage = () => {
                 </div>
               ))}
             </div>
-
             <div className="lesson__comments-form">
               <input
                 type="text"

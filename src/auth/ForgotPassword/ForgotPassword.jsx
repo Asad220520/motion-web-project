@@ -42,7 +42,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container items">
       <h2 onClick={() => navigate("/войти")} style={{ cursor: "pointer" }}>
         X
       </h2>

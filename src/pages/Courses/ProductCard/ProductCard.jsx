@@ -67,7 +67,6 @@ const ProductCard = ({ el }) => {
       </div>
       <div className="favorite">
         <a
-          href="#"
           className="favorite-icon"
           onClick={() =>
             isFavorite ? removeFavoriteCourse(el.id) : addFavoriteCourse(el)

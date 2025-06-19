@@ -68,7 +68,7 @@ const ProfileMain = () => {
       : activeCategory === "Бесплатные"
       ? courses.filter((course) => course.status_course === "Бесплатно")
       : activeCategory === "Все курсы"
-      ? null
+      ? courses
       : [];
   useEffect(() => {
     if (tokens?.access && status === "idle") {
@@ -92,7 +92,13 @@ const ProfileMain = () => {
         <div className="profileMain">
           <div className="profileMain--info">
             <div className="profileMain--info__img">
-              <img src={profile.bg_user || "https://www.geaves.com/media/catalog/product/cache/43ceea50484a8b0adcb18d996a748113/3/1/31552_5.jpg"} alt="" />
+              <img
+                src={
+                  profile.bg_user ||
+                  "https://www.geaves.com/media/catalog/product/cache/43ceea50484a8b0adcb18d996a748113/3/1/31552_5.jpg"
+                }
+                alt=""
+              />
             </div>
             <div className="profileMain--info__title">
               <h1>

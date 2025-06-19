@@ -6,16 +6,44 @@ import { FaPlay } from "react-icons/fa";
 import classNames from "classnames";
 import img from "../../../assets/images/videos.png";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const CourseLessons = ({ lessons }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const tokens = useSelector((state) => state.auth.tokens);
   const navigate = useNavigate();
 
   const handleVideoClick = (lesson) => {
+    if (!tokens?.access) {
+      toast.error(
+        "Пожалуйста, войдите и зарегистрируйтесь, чтобы просмотреть уроки.",
+        {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+      return;
+    }
     if (lesson.status === "Открытый") {
-      navigate(`/lesson/${lesson.id}`); // перейти на страницу урока
+      navigate(`/lesson/${lesson.id}`);
     } else {
-      alert("Чтобы посмотреть этот урок, купите курс.");
+      toast.error("Купите курс для доступа", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
 
@@ -47,8 +75,8 @@ const CourseLessons = ({ lessons }) => {
                       onClick={() => handleVideoClick(lessons[idx])}
                       title={
                         lessons[idx].status !== "Открытый"
-                          ? ""
-                          : "Купите курс для доступа"
+                          ? "Купите курс для доступа"
+                          : "Перейти к уроку"
                       }
                     >
                       <img src={img} alt={title} />
@@ -73,6 +101,7 @@ const CourseLessons = ({ lessons }) => {
             </div>
           ))}
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
