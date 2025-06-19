@@ -3,6 +3,7 @@ import "./LotStudy.scss";
 import Button from "@/components/Button";
 import studyBoy from "@/assets/images/studyBoy.png";
 import { apiRequest } from "@/api/apiRequest";
+import { Typewriter } from "react-simple-typewriter";
 
 const LotStudy = () => {
   const [data, setData] = useState(null);
@@ -33,7 +34,15 @@ const LotStudy = () => {
         {data.map((item, idx) => (
           <div key={idx} className="lotStudy__inner">
             <div className="lotStudy__text">
-              <h1>{item.title}</h1>
+              <h1>
+                <Typewriter
+                  words={[item.title]}
+                  loop={1}
+                  typeSpeed={150}
+                  deleteSpeed={100}
+                  delaySpeed={2500}
+                />
+              </h1>
               <p>{item.description}</p>
               <Button label={item.button_label || "Начать"} />
             </div>

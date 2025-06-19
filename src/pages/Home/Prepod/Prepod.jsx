@@ -27,15 +27,19 @@ const Prepod = () => {
   ];
 
   return (
-    <div className="prepod container">
-      {cardsData.map((card) => (
-        <PrepodCard
-          key={card.id}
-          icon={card.icon}
-          title={card.title}
-          description={card.description}
-        />
-      ))}
+    <div id="prepod">
+      <div className="container">
+        <div className="prepod ">
+          {cardsData.map((card) => (
+            <PrepodCard
+              key={card.id}
+              icon={card.icon}
+              title={card.title}
+              description={card.description}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

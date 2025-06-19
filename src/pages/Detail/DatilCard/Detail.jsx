@@ -9,6 +9,7 @@ import CourseLessons from "../VideosSection/Videos";
 import { fetchUserProfile } from "../../../redux/features/profile/profileSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 const Detail = () => {
   const [detail, setDetail] = useState([]);
@@ -18,8 +19,8 @@ const Detail = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile.profile);
   const isPurchased = profile?.purchased_courses?.some(
-  (item) => item.course === detail.id
-);
+    (item) => item.course === detail.id
+  );
 
   async function getDetail() {
     try {
@@ -31,6 +32,20 @@ const Detail = () => {
   }
 
   async function Purchased(course) {
+    if (!tokens?.access) {
+      toast.error("Пожалуйста, войдите или зарегистрируйтесь.", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      return;
+    }
+
     try {
       const response = await axios.post(
         `${API_BASE_URL}/courses/buy/`,
@@ -70,7 +85,7 @@ const Detail = () => {
           </Link>
           <div className="detail">
             <div className="detail--title">
-              <h1> {category?.category_name}</h1>
+              <h1>{category?.category_name}</h1>
               <p>
                 Мы предоставляем множество функций, которые вы можете
                 использовать. Постепенное накопление информация{" "}
@@ -105,10 +120,21 @@ const Detail = () => {
             >
               {isExpanded ? "Скрыть" : "Показать все"}
             </button>
-            <a onClick={() => Purchased(detail)} href="#">
-              <Button label={isPurchased ? "Курс куплен" : "Купить курс"} mode="blue" />
+            <a onClick={() => Purchased(detail)}>
+              {status_course === "Бесплатно" ? (
+                <Button
+                  label={isPurchased ? "Курс получен" : "Получить курс"}
+                  mode="blue"
+                />
+              ) : (
+                <Button
+                  label={isPurchased ? "курс куплен" : "Купить курс"}
+                  mode="blue"
+                />
+              )}
             </a>
           </div>
+          <ToastContainer />
         </div>
       </div>
       <CourseLessons lessons={detail.course_lessons} />
