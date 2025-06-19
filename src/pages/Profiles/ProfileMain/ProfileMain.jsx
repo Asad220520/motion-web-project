@@ -7,7 +7,13 @@ import "./ProfileMain.scss";
 import classNames from "classnames";
 import ProductCard from "../../Courses/ProductCard/ProductCard";
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { IoIosHeart } from "react-icons/io";
+import time from "../../../assets/icons/card-icon-1.svg";
+import lesson from "../../../assets/icons/card-icon-1.svg";
+import progress from "../../../assets/icons/card-icon-1.svg";
+import { FaChevronRight } from "react-icons/fa";
+
 const ProfileMain = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile.profile);
@@ -62,7 +68,7 @@ const ProfileMain = () => {
       : activeCategory === "Бесплатные"
       ? courses.filter((course) => course.status_course === "Бесплатно")
       : activeCategory === "Все курсы"
-      ? courses
+      ? null
       : [];
   useEffect(() => {
     if (tokens?.access && status === "idle") {
@@ -86,16 +92,15 @@ const ProfileMain = () => {
         <div className="profileMain">
           <div className="profileMain--info">
             <div className="profileMain--info__img">
-              <img
-                src="https://assets.justinmind.com/wp-content/uploads/2020/09/guide-user-flow-charts-768x492.png"
-                alt=""
-              />
+              <img src={profile.bg_user || "https://www.geaves.com/media/catalog/product/cache/43ceea50484a8b0adcb18d996a748113/3/1/31552_5.jpg"} alt="" />
             </div>
             <div className="profileMain--info__title">
               <h1>
                 {profile.username} <span>{profile.role || "Студент"}</span>
               </h1>
-              <Button label="Редактировать" mode="blue" />
+              <NavLink to="/profiles/edit">
+                <Button label="Редактировать" mode="blue" />
+              </NavLink>
             </div>
             <div className="profileMain--info__user">
               <img
@@ -132,9 +137,43 @@ const ProfileMain = () => {
                   <ProductCard el={normalizeCourse(course)} key={course.id} />
                 ))
               )}
-              <NavLink to="/profiles/course-create">
-                <Button label="Добавить курс" mode="blue" />
-              </NavLink>
+              {profile.role === "Владелец" && (
+                <div id="productCard">
+                  <div className="img">
+                    <img
+                      src="https://www.geaves.com/media/catalog/product/cache/43ceea50484a8b0adcb18d996a748113/3/1/31552_5.jpg"
+                      alt=""
+                    />
+                    <h4>Бесплатно</h4>
+                  </div>
+                  <div className="favorite">
+                    <a href="#" className="favorite-icon">
+                      <IoIosHeart />
+                    </a>
+                  </div>
+                  <div className="productCard">
+                    <h3>Название курса</h3>
+                    <p>Краткая информация о курсе</p>
+                    <div className="productCard--info">
+                      <div className="productCard--info__text">
+                        <img src={time} alt="img" />
+                        <span>Время</span>
+                      </div>
+                      <div className="productCard--info__text">
+                        <img src={lesson} alt="img" />
+                        <span>Уроки</span>
+                      </div>
+                      <div className="productCard--info__text">
+                        <img src={progress} alt="img" />
+                        <span>Прогресс</span>
+                      </div>
+                    </div>
+                    <Link to={`/profiles/course-create`}>
+                      Узнать больше <FaChevronRight />
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

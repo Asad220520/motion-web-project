@@ -44,7 +44,7 @@
     }
 
     &__user {
-      @include square(54px);
+      @include square(58px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -53,9 +53,10 @@
       border-radius: 50%;
 
       img {
-        @include square(52px);
+        @include square(56px);
         padding: 4px;
         border-radius: 50%;
+        object-fit: cover;
       }
 
       &:hover {

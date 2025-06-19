@@ -8,63 +8,44 @@ import "./Reviews.scss";
 import ReviewsCard from "./ReviewsCard/ReviewsCard";
 import Button from "@/components/Button/Button";
 import { apiRequest } from "../../../api/apiRequest";
+import axios from "axios";
+import API_BASE_URL from "../../../config/api";
 
 const Reviews = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const paginationRef = useRef(null);
   const [swiperReady, setSwiperReady] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const [titleData, setTitleData] = useState({
     title: "Нам доверяют тысячи довольных учеников",
     description:
       "Мы предоставляем множество функций, которые вы можете использовать. Постепенное накопление информации.",
   });
 
-  const reviews = [
-    {
-      id: 1,
-      name: "Yessica Christy",
-      location: "Shanxi, China",
-      rating: 4.5,
-      content: "Отличный сервис, всем рекомендую!",
-    },
-    {
-      id: 2,
-      name: "Alex Johnson",
-      location: "Moscow, Russia",
-      rating: 5.0,
-      content: "Лучшая платформа для обучения",
-    },
-    {
-      id: 3,
-      name: "Maria Ivanova",
-      location: "Saint Petersburg, Russia",
-      rating: 4.7,
-      content: "Очень полезные курсы и отличная поддержка",
-    },
-    {
-      id: 4,
-      name: "John Smith",
-      location: "New York, USA",
-      rating: 5.0,
-      content: "Best experience ever!",
-    },
-    {
-      id: 5,
-      name: "John Smith",
-      location: "New York, USA",
-      rating: 5.0,
-      content: "Best experience ever!",
-    },
-    {
-      id: 6,
-      name: "John Smith",
-      location: "New York, USA",
-      rating: 5.0,
-      content: "Best experience ever!",
-    },
-  ];
-
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+  const normalizeReviews = (reviews) => {
+    return reviews.map((review) => ({
+      id: review.id,
+      name: review.user?.username || "Аноним",
+      location: `${review.city || "Неизвестно"}, ${
+        review.region || "Неизвестно"
+      }`,
+      rating: review.rating,
+      content: review.comment,
+      avatar: review.user?.avatar, 
+    }));
+  };
+  async function fetchReviews() {
+    let res = await axios(`${API_BASE_URL}/course/reviews/`);
+    const { data } = res;
+    console.log(data , "data");
+    (data, "data");
+    const normalized = normalizeReviews(data);
+    setReviews(normalized);
+  }
   useEffect(() => {
     if (
       navigationPrevRef.current &&
@@ -90,7 +71,9 @@ const Reviews = () => {
       .catch((err) => {
         console.error("Ошибка загрузки заголовка отзывов:", err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+console.log(reviews, "reviews");
 
   return (
     <section className="reviews">
