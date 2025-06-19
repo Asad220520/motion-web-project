@@ -1,19 +1,63 @@
-import React, { useState } from "react";
-import "./CourseRatingModal.scss";
-import { IoClose } from "react-icons/io5";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import "./CourseRatingModal.scss";
+import { fetchUserProfile } from "../../../redux/features/profile/profileSlice";
 
-const CourseRatingModal = ({ onClose, onSubmit }) => {
+const CourseRatingModal = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
- const nav = useNavigate()
+  const dispatch = useDispatch();
+  const tokens = useSelector((state) => state.auth.tokens);
+  const nav = useNavigate();
+  const profile = useSelector((state) => state.profile.profile);
+
+  useEffect(() => {
+    if (tokens?.access) {
+      dispatch(fetchUserProfile());
+    }
+  }, [dispatch, tokens]);
+
   const handleStarClick = (value) => {
     setRating(value);
   };
 
-  const handleSubmit = () => {
-    onSubmit({ rating, comment });
-    onClose();
+  const handleSubmit = async () => {
+    if (rating === 0) {
+      alert("Пожалуйста, выберите рейтинг");
+      return;
+    }
+    if (!tokens?.access) {
+      alert("Пользователь не авторизован");
+      return;
+    }
+
+    try {
+      await axios.post(
+        "http://13.60.235.183/course/reviews/create/",
+        {
+          course: 1 + 1 ,
+          city: profile?.city || "Bishkek", // из профиля или дефолт
+          region: profile?.region || "Kyrgyzстан",
+          rating,
+          comment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${tokens.access}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+
+      alert("Отзыв успешно отправлен");
+    } catch (error) {
+      console.error("Ошибка отправки отзыва:", error.response || error);
+      alert("Ошибка при отправке отзыва");
+    }
   };
 
   return (
@@ -29,6 +73,7 @@ const CourseRatingModal = ({ onClose, onSubmit }) => {
               key={val}
               className={`star ${val <= rating ? "active" : ""}`}
               onClick={() => handleStarClick(val)}
+              style={{ cursor: "pointer" }}
             >
               ★
             </span>

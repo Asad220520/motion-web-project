@@ -1,0 +1,117 @@
+#edit-profile-form {
+  padding: fluid(40, 20) 0;
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #333;
+  }
+  .edit-profile-form {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+
+      label {
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        width: fluid(500, 340);
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+        }
+      }
+
+      /* Кастомный файл-загрузчик */
+      .file-upload {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: fluid(500, 340);
+        height: 40px;
+        gap: fluid(10, 6);
+
+        input[type="file"] {
+          opacity: 0;
+          width: 150px;
+          height: 40px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          cursor: pointer;
+        }
+
+        &::after {
+          content: "Загрузить файл";
+          display: inline-block;
+          width: 150px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          background-color: #007bff;
+          color: white;
+          font-size: 1rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          user-select: none;
+          transition: background-color 0.3s;
+        }
+
+        &:hover::after {
+          background-color: #0056b3;
+        }
+      }
+
+      button[type="submit"] {
+        @include flex-center;
+        margin-top: 30px;
+        width: fluid(500, 340);
+        padding: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+
+    /* Отображение имени выбранного файла рядом с кнопкой */
+    .file-name {
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    p {
+      margin-top: 2rem;
+      font-weight: 500;
+      color: var(--color-blue);
+      text-align: center;
+    }
+  }
+}

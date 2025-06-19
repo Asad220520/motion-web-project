@@ -2,12 +2,12 @@ import "./ReviewsCard.scss";
 import rivo from "@/assets/images/revios.svg";
 import { BiSolidStar } from "react-icons/bi";
 
-const ReviewsCard = ({ name, location, rating, content }) => {
+const ReviewsCard = ({ name, location, rating, content ,avatar}) => {
   return (
     <div className="reviewsCard">
       <div className="reviewsCard__header">
         <div className="reviewsCard__user">
-          <img src={rivo} alt="User" className="reviewsCard__avatar" />
+          <img src={avatar ? avatar : rivo} alt="User" className="reviewsCard__avatar" />
           <div className="reviewsCard__user-info">
             <h5 className="reviewsCard__name">{name}</h5>
             <span className="reviewsCard__location">{location}</span>

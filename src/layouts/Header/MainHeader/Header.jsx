@@ -89,7 +89,7 @@ const MainHeader = () => {
             ) : (
               <>
                 <NavLink to={"/профиль"}>
-                  <div className="profile-header__user">
+                  <div className="header__actions--user">
                     <img
                       width={40}
                       height={40}
