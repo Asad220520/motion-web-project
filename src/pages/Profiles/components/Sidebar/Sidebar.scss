@@ -12,6 +12,49 @@
   left: 0;
   z-index: 1;
 
+  // Секция пользователя для мобильной версии
+  &-user-mobile {
+    display: none;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-base);
+
+    @include mobile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &-username {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  &-notifications {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
   .sidebar-nav h1 {
     display: none;
 
