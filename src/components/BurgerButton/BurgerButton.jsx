@@ -17,8 +17,8 @@ const BurgerButton = (props) => {
     >
       <svg
         className="burger-button__svg"
-        width="30"
-        height="30"
+        width="60"
+        height="60"
         viewBox="0 0 100 100"
       >
         <path
