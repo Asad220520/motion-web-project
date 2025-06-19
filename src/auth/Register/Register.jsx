@@ -3,17 +3,20 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "@/components/Button";
 import "./Register.scss";
 import API_BASE_URL from "../../config/api";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Register = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     agree: false,
   });
+
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
@@ -23,25 +26,28 @@ const Register = () => {
     }));
   };
 
+  const isEmailValid = /^\S+@\S+\.\S+$/.test(formData.email);
+  const isPasswordValid = formData.password.length >= 6;
+  const isFormValid =
+    formData.username && isEmailValid && isPasswordValid && formData.agree;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!formData.agree) {
       setError("Вы должны согласиться с условиями");
       return;
     }
-    if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+    if (!isEmailValid) {
       setError("Введите корректный email");
       return;
     }
-    if (formData.password.length < 6) {
+    if (!isPasswordValid) {
       setError("Пароль должен содержать минимум 6 символов");
       return;
     }
 
     setLoading(true);
     setError("");
-
     try {
       const response = await fetch(`${API_BASE_URL}/register/`, {
         method: "POST",
@@ -49,14 +55,13 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: formData.username, // <-- здесь username
+          username: formData.username,
           email: formData.email,
           password: formData.password,
         }),
       });
 
       const data = await response.json();
-
       if (!response.ok) {
         if (data.username) {
           setError(data.username[0]);
@@ -70,7 +75,6 @@ const Register = () => {
         return;
       }
 
-      // После успешной регистрации — на страницу логина
       navigate("/войти");
     } catch (err) {
       setError(err.message || "Произошла ошибка при регистрации");
@@ -78,11 +82,10 @@ const Register = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className="register">
       <div className="register__button">
-        <NavLink to={'/войти'}>
+        <NavLink to={"/войти"}>
           <Button
             className="register__button-el"
             label="войти"
@@ -107,29 +110,50 @@ const Register = () => {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="email">Почта</label>
             <input
               type="email"
               id="email"
-              placeholder="Введите свою почту"
+              placeholder="Введите вашу почту"
+              required
               value={formData.email}
               onChange={handleChange}
-              required
+              className={
+                formData.email ? (isEmailValid ? "valid" : "invalid") : ""
+              }
             />
           </div>
-          <div className="form-group">
+
+          <div className="form-group password-group">
             <label htmlFor="password">Пароль*</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Введите свой пароль"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              minLength="6"
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Введите свой пароль"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                minLength="6"
+                className={
+                  formData.password
+                    ? isPasswordValid
+                      ? "valid"
+                      : "invalid"
+                    : ""
+                }
+              />
+              <span
+                className="toggle-password"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </span>
+            </div>
           </div>
+
           <div className="form-checkbox">
             <input
               type="checkbox"
@@ -140,29 +164,32 @@ const Register = () => {
             />
             <label htmlFor="agree">Согласен с условиями</label>
           </div>
+
           <Button
             className="register-button"
             type="submit"
             label={loading ? "Регистрация..." : "Регистрация"}
-            disabled={loading}
+            disabled={loading || !isFormValid}
           />
         </form>
+
         <div className="divider">
           <span>Или</span>
         </div>
+
         <div className="social-buttons">
           <Button
             className="social-button google"
             mode="black-10"
             label="Google"
-            iconName="leFill"
+            iconName="google"
             iconPosition="before"
           />
           <Button
-            className="social-button google"
+            className="social-button facebook"
             mode="black-10"
             label="Facebook"
-            iconName="Facebook"
+            iconName="facebook"
             iconPosition="before"
           />
         </div>
