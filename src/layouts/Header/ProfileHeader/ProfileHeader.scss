@@ -1,6 +1,5 @@
 .profile {
   .profile-header {
-    position: relative;
     position: sticky;
     top: 0;
     width: 100%;
@@ -13,14 +12,10 @@
     z-index: 3;
 
     .container {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      // @include mobile {
-      //   flex-direction: row-reverse;
-      //   align-items: flex-end;
-      // }
     }
 
     &__left {
@@ -29,18 +24,34 @@
       gap: 12px;
     }
 
+    &__right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      &--mobile {
+        display: none;
+
+        @include mobile {
+          display: flex;
+          order: 2; // Перемещаем вправо
+        }
+      }
+
+      &--desktop {
+        @include mobile {
+          display: none;
+        }
+      }
+    }
+
     &__button {
       display: none;
 
       @include mobile {
         display: block;
+        margin-left: auto; // Выравниваем по правому краю
       }
-    }
-
-    &__right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
     }
 
     &__user {

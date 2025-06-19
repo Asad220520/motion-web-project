@@ -22,16 +22,19 @@ const ProfileHeader = ({ onBurgerClick }) => {
     <div className="profile">
       <header className="profile-header">
         <div className="container">
-          <div className="profile-header__left">
+          {/* Переместим правую часть в начало для мобильной версии */}
+          <div className="profile-header__right profile-header__right--mobile">
             <BurgerButton
               onClick={onBurgerClick}
               className="profile-header__button"
             />
-            <Logo className="header__logo" />
-            {/* <div className="header__logo">Logo</div> */}
           </div>
 
-          <div className="profile-header__right">
+          <div className="profile-header__left">
+            <Logo className="header__logo" />
+          </div>
+
+          <div className="profile-header__right profile-header__right--desktop">
             <div className="profile-header__notif">
               <IoNotificationsOutline />
             </div>

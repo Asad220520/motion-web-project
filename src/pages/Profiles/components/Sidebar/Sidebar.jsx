@@ -10,14 +10,17 @@ import {
   Settings,
   HelpCircle,
   LogOut,
+  Bell,
 } from "lucide-react";
 import "./Sidebar.scss";
 import API_BASE_URL from "../../../../config/api";
+import defaultAvatar from "@/assets/images/defaultAvatar.png";
 
 const Sidebar = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const refresh = useSelector((state) => state.auth.tokens?.refresh);
+  const profile = useSelector((state) => state.profile.profile);
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleLogout = async () => {
@@ -36,6 +39,7 @@ const Sidebar = ({ onClose }) => {
       navigate("/войти");
     }
   };
+
   const menu = [
     { label: "Профиль", to: "/профиль", icon: <User /> },
     { label: "Чат", to: "/профиль/чат", icon: <MessageCircle /> },
@@ -43,11 +47,33 @@ const Sidebar = ({ onClose }) => {
     { label: "Оценить", to: "/профиль/оценки", icon: <Star /> },
     { label: "Настройки", to: "/профиль/настройки", icon: <Settings /> },
   ];
+
   const help = { label: "Помощь", to: "/профиль/помощь", icon: <HelpCircle /> };
 
   return (
     <div>
       <aside className="sidebar">
+        {/* Добавляем секцию пользователя для мобильной версии */}
+        <div className="sidebar-user-mobile">
+          {profile ? (
+            <div className="sidebar-user-info">
+              <img
+                src={profile.avatar || defaultAvatar}
+                alt="avatar"
+                className="sidebar-avatar"
+              />
+              <span className="sidebar-username">
+                {profile.username || "Пользователь"}
+              </span>
+            </div>
+          ) : (
+            <span>Загрузка...</span>
+          )}
+          <div className="sidebar-notifications">
+            <Bell size={20} />
+          </div>
+        </div>
+
         <nav className="sidebar-nav">
           <h1 onClick={() => onClose()}>X</h1>
           <ul>
