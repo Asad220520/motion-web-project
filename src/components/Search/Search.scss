@@ -16,7 +16,7 @@
     h2 {
       text-align: center;
       font-weight: 500;
-      font-size: fluid(18, 10);
+      font-size: fluid(18, 16);
       letter-spacing: 0%;
       color: #4f5665;
       max-width: 700px;
@@ -28,7 +28,7 @@
       align-items: center;
       justify-content: center;
       input { 
-        width: fluid(950, 300);
+        width: fluid(950, 200);
         height: fluid(88, 44);
         border-top: 2px solid var(--color-grey);
         border-left: 2px solid var(--color-grey);
@@ -37,7 +37,7 @@
         outline: none;
         padding-left: 10px;
         font-weight: 400;
-        @include fluid-text(22, 6);
+        @include fluid-text(22, 16);
         line-height: 42.48px;
         letter-spacing: 0.3px;
         color: #737373;
@@ -45,16 +45,17 @@
         border-bottom-left-radius: 8px;
       }
       button {
-        width: fluid(160, 50);
+        width: fluid(160, 90);
         height: fluid(88, 44);
         border-radius: 0 4px 4px 0;
         font-weight: 400;
-        @include fluid-text(24, 6);
+        @include fluid-text(24, 14);
         text-align: center;
         color: white;
         background: #23a6f0;
         cursor: pointer;
         border: none;
+        padding: 10px;
       }
     }
   }
