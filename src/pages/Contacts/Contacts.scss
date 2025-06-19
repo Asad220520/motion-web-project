@@ -1,7 +1,100 @@
+#contact {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(20px);
+  width: 100%;
+  height: 100%;
+  z-index: 9;
 
-.contacts__inner{
+  .contact {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: fluid(50, 24);
+    justify-content: center;
+
+    &__card {
+      position: relative;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 450px;
+
+      &--group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .icon {
+          background: #23a6f0;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 22px;
+          color: white;
+        }
+
+        &__wrapper {
+          display: flex;
+          flex-direction: column;
+
+          label {
+            margin-bottom: 10px;
+            font-family: "League Spartan", sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            color: #23a6f0;
+            letter-spacing: 1px;
+          }
+
+          input {
+            background: transparent;
+            border: none;
+            border-left: 1px solid #fff;
+            color: #23a6f0;
+            padding: 0px 10px;
+            font-size: 14px;
+
+            &::placeholder {
+              color: #aaa;
+            }
+
+            &:focus {
+              outline: none;
+              border-color: rgba(16, 159, 239, 1);
+            }
+          }
+        }
+      }
+
+      &--button {
+        font-family: "League Spartan", sans-serif;
+        background-color: #23a6f0;
+        color: white;
+        border: none;
+        padding: 18px 0;
+        border-radius: 8px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #fff;
+          color: #23a6f0;
+          border: 1px solid #23a6f0;
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+    }
+  }
 }
