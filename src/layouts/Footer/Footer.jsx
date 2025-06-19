@@ -16,17 +16,21 @@ const Footer = () => {
     },
   ];
 
-  const extraLinks = ["Terms of Use", "Privacy Policy", "Cookie Policy"];
-
   return (
     <footer className="footer">
       <div className="footer__inner container">
         <div className="footer__descript">
-          <h2>Logo</h2>
+          <h2 className="footer__logo">Logo</h2>
           <p>
             (Название)— это частная виртуальная сеть с уникальными функциями и
             высоким уровнем безопасности.
           </p>
+            <div className="footer__cyrcle">
+              <div className="cyrcle"></div>
+              <div className="cyrcle"></div>
+              <div className="cyrcle"></div>
+            </div>
+            <span>©2020LaslesVPN</span>
         </div>
         <nav className="footer__menu">
           {menuItems.map(({ title, links }, index) => (
