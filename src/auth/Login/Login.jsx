@@ -1,33 +1,52 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/features/auth/authSlice";
 import Button from "@/components/Button";
 import "./Login.scss";
 import API_BASE_URL from "../../config/api";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import loginava from "../../assets/images/loginava.jpg";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isPasswordValid = password.length >= 6;
+  const isFormValid = isEmailValid && isPasswordValid;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setEmailError("");
+    setPasswordError("");
+
+    if (!isEmailValid) {
+      setEmailError("Неверный формат email");
+    }
+    if (!isPasswordValid) {
+      setPasswordError("Пароль должен быть не менее 6 символов");
+    }
+    if (!isFormValid) {
+      setLoading(false);
+      return;
+    }
     try {
       const response = await fetch(`${API_BASE_URL}/login/`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email, // <-- вот здесь ключевая правка!
-          password: password,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
@@ -36,17 +55,12 @@ const Login = () => {
       }
 
       const data = await response.json();
-
       dispatch(
         loginUser({
-          user: { email: email },
-          tokens: {
-            access: data.access,
-            refresh: data.refresh,
-          },
+          user: { email },
+          tokens: { access: data.access, refresh: data.refresh },
         })
       );
-
       navigate("/профиль");
     } catch (err) {
       setError(err.message || "Произошла ошибка при входе");
@@ -54,16 +68,19 @@ const Login = () => {
       setLoading(false);
     }
   };
-  function clickIx() {
+
+  const clickIx = () => {
     navigate("/");
-  }
+  };
 
   return (
     <div className="login">
+      <img className="login__image" src={loginava} alt="" />
       <div className="login-container">
-      <h2 onClick={clickIx}>X</h2>
+        <h2 onClick={clickIx}>X</h2>
         <h1 className="login-title">Добро пожаловать</h1>
         {error && <div className="error-message">{error}</div>}
+
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Почта</label>
@@ -74,33 +91,55 @@ const Login = () => {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={email ? (isEmailValid ? "valid" : "invalid") : ""}
             />
+            {emailError && <div className="field-error">{emailError}</div>}
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Пароль</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Введите ваш пароль"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                placeholder="Введите ваш пароль"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={
+                  password ? (isPasswordValid ? "valid" : "invalid") : ""
+                }
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
             <a href="/forgot-password" className="forgot-password">
               Забыли пароль?
             </a>
+            {passwordError && (
+              <div className="field-error">{passwordError}</div>
+            )}
           </div>
+
           <div className="divider"></div>
+
           <Button
             className="login-button"
             type="submit"
             label={loading ? "Загрузка..." : "Войти"}
-            disabled={loading}
+            disabled={loading || !isFormValid}
           />
         </form>
+
         <div className="register-link">
           У вас нет аккаунта? <a href="/регистрация">Зарегистрироваться</a>
         </div>
+
         <div className="social-login">
           <div className="social-divider">
             <span>Или</span>
@@ -110,14 +149,14 @@ const Login = () => {
               className="social-button google"
               mode="black-10"
               label="Google"
-              iconName="leFill"
+              iconName="google"
               iconPosition="before"
             />
             <Button
-              className="social-button google"
+              className="social-button facebook"
               mode="black-10"
               label="Facebook"
-              iconName="Facebook"
+              iconName="facebook"
               iconPosition="before"
             />
           </div>
