@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -49,15 +49,16 @@ const Login = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Ошибка при входе");
-      }
-
       const data = await response.json();
+      if (!response.ok) {
+        setError(data.non_field_errors[0]);
+        return;
+      }
+    console.log("Login response:", data.deta);
+    
       dispatch(
         loginUser({
-          user: { email },
+          user: { email},
           tokens: { access: data.access, refresh: data.refresh },
         })
       );
