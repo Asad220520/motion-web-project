@@ -39,11 +39,11 @@ const CourseRatingModal = () => {
       await axios.post(
         "http://13.60.235.183/course/reviews/create/",
         {
-          course: 1 + 1,
+          course: 1,
           city: profile?.city || "Bishkek", // из профиля или дефолт
           region: profile?.region || "Kyrgyzстан",
           rating,
-          comment,
+          comment: comment,
         },
         {
           headers: {

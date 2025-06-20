@@ -110,6 +110,7 @@ const Sidebar = ({ onClose }) => {
             </li>
           </ul>
         </nav>
+      </aside>
         {showConfirm && (
           <div className="modal-overlay">
             <div className="modal">
@@ -128,7 +129,6 @@ const Sidebar = ({ onClose }) => {
             </div>
           </div>
         )}
-      </aside>
     </div>
   );
 };
