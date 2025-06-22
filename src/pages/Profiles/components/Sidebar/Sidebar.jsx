@@ -48,6 +48,14 @@ const Sidebar = ({ onClose }) => {
     { label: "Настройки", to: "/профиль/настройки", icon: <Settings /> },
   ];
 
+  if (profile.role === "Владелец") {
+    menu.splice(2, 0, {
+      label: "Студенты",
+      to: "/профиль/студенты",
+      icon: <Star />,
+    });
+  }
+  
   const help = { label: "Помощь", to: "/профиль/помощь", icon: <HelpCircle /> };
 
   return (
@@ -111,24 +119,24 @@ const Sidebar = ({ onClose }) => {
           </ul>
         </nav>
       </aside>
-        {showConfirm && (
-          <div className="modal-overlay">
-            <div className="modal">
-              <h3>Вы уверены, что хотите выйти?</h3>
-              <div className="modal-buttons">
-                <button className="confirm-btn" onClick={handleLogout}>
-                  Да
-                </button>
-                <button
-                  className="cancel-btn"
-                  onClick={() => setShowConfirm(false)}
-                >
-                  Нет
-                </button>
-              </div>
+      {showConfirm && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Вы уверены, что хотите выйти?</h3>
+            <div className="modal-buttons">
+              <button className="confirm-btn" onClick={handleLogout}>
+                Да
+              </button>
+              <button
+                className="cancel-btn"
+                onClick={() => setShowConfirm(false)}
+              >
+                Нет
+              </button>
             </div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

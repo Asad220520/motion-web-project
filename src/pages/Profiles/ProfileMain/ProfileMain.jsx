@@ -76,15 +76,13 @@ const ProfileMain = () => {
     } else if (!tokens?.access) {
       nav("/войти");
     }
-  }, [tokens, dispatch, nav, status]);
+  }, [tokens, dispatch, nav, status ,profile]);
 
   if (!profile) {
     return <div>Загрузка...</div>;
   }
   if (status === "loading") return <p>Загрузка...</p>;
   if (status === "failed") return <p>Ошибка: {error}</p>;
-  console.log(profile, "profile");
-  console.log(courses, "courses");
 
   return (
     <div id="profileMain">
@@ -104,7 +102,7 @@ const ProfileMain = () => {
               <h1>
                 {profile.username} <span>{profile.role || "Студент"}</span>
               </h1>
-              <NavLink to="/profiles/edit">
+              <NavLink to="/профиль/редактировать">
                 <Button label="Редактировать" mode="blue" />
               </NavLink>
             </div>
@@ -174,8 +172,8 @@ const ProfileMain = () => {
                         <span>Прогресс</span>
                       </div>
                     </div>
-                    <Link to={`/profiles/course-create`}>
-                      Узнать больше <FaChevronRight />
+                    <Link to={`/профиль/добавить-курс`}>
+                     Добавить курс <FaChevronRight />
                     </Link>
                   </div>
                 </div>

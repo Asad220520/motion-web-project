@@ -29,6 +29,8 @@ import ResetPasswordConfirm from "./auth/ResetPasswordConfirm/ResetPasswordConfi
 import CourseCreateForm from "./pages/Profiles/CourseCreateForm/CourseCreateForm";
 import LessonCreateForm from "./pages/Profiles/CourseCreateForm/LessonCreateForm/LessonCreateForm";
 import EditProfileForm from "./pages/Profiles/EditProfileForm/EditProfileForm";
+import OwnerProfile from "./pages/Profiles/Students.jsx/OwnerProfile";
+import StudentPortfolio from "./pages/Profiles/Students.jsx/studentProfile/StudentPortfolio";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -73,9 +75,12 @@ const App = () => {
         <Route path="/профиль/настройки" element={<Settings />} />
         <Route path="/профиль/помощь" element={<Help />} />
         <Route path="/lesson/:id" element={<LessonPage />} />
-        <Route path="/profiles/course-create" element={<CourseCreateForm />} />
-        <Route path="/profiles/lesson-create" element={<LessonCreateForm />} />
-        <Route path="/profiles/edit" element={<EditProfileForm />} />
+        <Route path="/профиль/добавить-курс" element={<CourseCreateForm />} />
+        <Route path="/профиль/добавить-урок" element={<LessonCreateForm />} />
+        <Route path="/профиль/редактировать" element={<EditProfileForm />} />
+        <Route path="/профиль/студенты" element={<OwnerProfile />} />
+        <Route path="/студент/:idStudent" element={<StudentPortfolio />} />
+
       </Route>
     </Routes>
   );

@@ -47,7 +47,7 @@ const Detail = () => {
     }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${API_BASE_URL}/courses/buy/`,
         { course: course.id }, // тело запроса, обычно указывают id курса
         {
@@ -57,7 +57,16 @@ const Detail = () => {
           },
         }
       );
-      console.log("Курс добавлен в покупки:", response.data);
+      toast.success("Курс добавлен в мои курсы", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       dispatch(fetchUserProfile());
     } catch (error) {
       console.error(

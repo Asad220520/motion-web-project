@@ -6,7 +6,8 @@ import Button from "@/components/Button";
 import "./Login.scss";
 import API_BASE_URL from "../../config/api";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import loginava from "../../assets/images/loginava.jpg";
+// import loginava from "../../assets/images/loginImg.png";
+import { IoClose } from "react-icons/io5";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -76,9 +77,10 @@ const Login = () => {
 
   return (
     <div className="login">
-      <img className="login__image" src={loginava} alt="" />
+      <img className="login__image" src={"https://wjm.s3.amazonaws.com/destintl/uploads/articles/500-aHR0cDovL2hpcmV0cmFpbC5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDkvRmluZFRoZUpvYi1zY2FsZWQuanBn_65_1724131384.jpg"} alt="" />
       <div className="login-container">
-        <h2 onClick={clickIx}>X</h2>
+        <h2 onClick={clickIx}><IoClose />
+</h2>
         <h1 className="login-title">Добро пожаловать</h1>
         {error && <div className="error-message">{error}</div>}
 
@@ -126,9 +128,6 @@ const Login = () => {
               <div className="field-error">{passwordError}</div>
             )}
           </div>
-
-          <div className="divider"></div>
-
           <Button
             className="login-button"
             type="submit"
