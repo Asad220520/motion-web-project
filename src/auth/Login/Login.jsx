@@ -23,7 +23,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isPasswordValid = password.length >= 6;
+  const isPasswordValid = password.length >= 3;
   const isFormValid = isEmailValid && isPasswordValid;
 
   const handleSubmit = async (e) => {
