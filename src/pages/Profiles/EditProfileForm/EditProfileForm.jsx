@@ -11,7 +11,6 @@ const EditProfileForm = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState({
     username: profile?.username || "",
-    email: profile?.email || "",
   });
 
   const [avatarFile, setAvatarFile] = useState(null);
@@ -27,7 +26,6 @@ const EditProfileForm = () => {
 
     const formData = new FormData();
     formData.append("username", form.username);
-    formData.append("email", form.email);
     if (avatarFile) formData.append("avatar", avatarFile);
     if (bgFile) formData.append("bg_user", bgFile); // или другое поле, в зависимости от бэкенда
 
@@ -66,16 +64,6 @@ const EditProfileForm = () => {
                 type="text"
                 name="username"
                 value={form.username}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div>
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
                 onChange={handleChange}
               />
             </div>

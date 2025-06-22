@@ -18,8 +18,6 @@ const ChatDesktop = () => {
   const [messages, setMessages] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
   const ws = useRef(null);
-  const token = useSelector((state) => state.auth.tokens?.access);
-  console.log("token", token);
   const user = useSelector((state) => state.auth.user);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -32,11 +30,8 @@ const ChatDesktop = () => {
   }, []);
 
   useEffect(() => {
-    if (!token) return;
-    const wsProtocol = window.location.protocol === "https:" ? "wss" : "ws";
-    const currentRoom =
-      chats.find((c) => c.id === activeChat)?.roomName || "general";
-    const wsUrl = `${wsProtocol}://13.60.235.183/ws/chat/${currentRoom}/?token=${token}`;
+    const currentRoom = "general";
+    const wsUrl = `ws://127.0.0.1:8000/ws/chat/${currentRoom}/`;
     ws.current = new WebSocket(wsUrl);
 
     ws.current.onopen = () => {
@@ -81,15 +76,20 @@ const ChatDesktop = () => {
       }
     };
 
-    ws.current.onclose = () => {
+    ws.current.onclose = (event) => {
+      console.log("WebSocket закрыт", event.code, event.reason);
       setIsConnected(false);
+    };
+
+    ws.current.onerror = (error) => {
+      console.error("WebSocket ошибка", error);
     };
 
     return () => {
       ws.current?.close();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, activeChat]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeChat]);
 
   const handleSendMessage = () => {
     if (message.trim() && ws.current && isConnected) {
@@ -99,27 +99,17 @@ const ChatDesktop = () => {
         sender: user?.email || "Вы",
       };
       ws.current.send(JSON.stringify(outgoing));
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          text: message,
-          time: new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-          isMe: true,
-          sender: user?.email,
-        },
-      ]);
       setMessage("");
-      setTimeout(() => {
-        const container = document.querySelector(".chat-desktop__messages");
-        if (container) container.scrollTop = container.scrollHeight;
-      }, 100);
     }
   };
-
+  useEffect(() => {
+    const container = document.querySelector(".chat-desktop__messages");
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [messages]); // срабатывает при каждом изменении messages
+  
+  console.log(messages.map((msg) => msg));
   return (
     <div className="chat-desktop">
       {(!isMobile || showSidebar) && (

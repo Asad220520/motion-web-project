@@ -1,0 +1,15 @@
+.help-page {
+  padding: 20px;
+  h1 {
+    font-size: fluid(32, 20);
+    margin-bottom: 16px;
+  }
+  h2 {
+    margin-top: fluid(20, 18);
+    color: #0057ff;
+  }
+  p {
+    font-size:fluid(16, 14);
+    line-height: 1.6;
+  }
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import "./CourseCreateForm.scss";
 import { NavLink } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const CourseCreateForm = () => {
   const tokens = useSelector((state) => state.auth.tokens);
@@ -66,7 +67,16 @@ const CourseCreateForm = () => {
           },
         }
       );
-      alert("Курс успешно создан!");
+        toast.success("Курс добавлен!", {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
       console.log("Создан курс:", response.data);
     } catch (error) {
       console.error(
@@ -199,7 +209,8 @@ const CourseCreateForm = () => {
           <button type="submit">Создать курс</button>
         </form>
       </div>
-          <NavLink to="/profiles/lesson-create">Создать урок</NavLink>
+      <ToastContainer/>
+      <NavLink to="/профиль/добавить-урок">Создать урок</NavLink>
     </div>
   );
 };
